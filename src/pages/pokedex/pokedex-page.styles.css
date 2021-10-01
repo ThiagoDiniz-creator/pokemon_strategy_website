@@ -1,0 +1,23 @@
+.pokedex-container{
+    background-color: black;
+    display: flex;
+    height: 92.95vh;
+    width: 100%;
+}
+
+.pokedex-presentation-container{
+    width: 33.33%;
+    height: inherit;
+    background-color:lightcoral;
+}
+
+.pokedex-rating-container{
+    width: 33.33%;
+    height: inherit;
+    background-color:lightseagreen;
+}
+
+.presentation-image{
+    width: 50%;
+    background-color: white;
+}

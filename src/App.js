@@ -1,23 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Route, Switch } from "react-router-dom";
+import HomePage from "./pages/homepage/homepage.component";
+import NavBar from "./components/navbar/navbar.component";
+import SearchPage from "./pages/searchpage/searchpage.component";
+import PokedexPage from "./pages/pokedex/pokedex-page.component";
+import SignUpSignIn from "./pages/sign-up-sign-in/sign-up-sign-in.component";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavBar brandText={"POKEMON STRATEGY"}
+      brandUrl="/"
+        items={[
+          {
+            url: "/search",
+            content: "FIND POKEMON",
+          },
+          {
+            url: "/",
+            content: "BUILD MATCH UP",
+          },
+          {
+            url: "/",
+            content: "BUILD TEAM",
+          },
+          {
+            url: "/login",
+            content: "SIGN-UP"
+          }
+        ]}
+      />
+      <Switch>
+        <Route path="/" component={HomePage} exact />
+        <Route path="/search" component={SearchPage} exact />
+        <Route path="/pokemon/:pokemonName" component={PokedexPage} exact />
+        <Route path="/login" component={SignUpSignIn} exact />
+      </Switch>
     </div>
   );
 }

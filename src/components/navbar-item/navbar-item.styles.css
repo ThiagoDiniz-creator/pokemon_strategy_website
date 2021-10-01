@@ -1,0 +1,45 @@
+.navbar__item {
+  display: flex;
+  width: 30%;
+  margin-top: 0.25vh;
+  padding: 0.5%;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar__item__text {
+  color: inherit;
+  font-size: x-large;
+  font-family: "Montserrat", sans-serif;
+}
+
+.navbar__item:nth-child(1),
+.navbar__item:nth-child(2),
+.navbar__item:nth-child(3) {
+  color: rgb(255, 255, 255);
+}
+
+.navbar__item:nth-child(1):hover {
+  color: white;
+  background: #ff6b35;
+}
+
+.navbar__item:nth-child(2):hover {
+  color: white;
+  background: #758bfd;
+}
+
+.navbar__item:nth-child(3):hover {
+  color: #000000;
+  background: rgb(255, 255, 255);
+}
+
+.navbar__item:nth-child(4) {
+  color: rgb(255, 255, 255);
+  background: #ff2929;
+}
+
+.navbar__item:nth-child(4):hover {
+  color: #000000;
+  background: #fbff1f;
+}

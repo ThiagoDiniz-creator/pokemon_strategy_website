@@ -1,0 +1,40 @@
+.card-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 150%;
+  transition: transform 0.25s ease-out;
+  height: 70%;
+  width: 80%;
+  margin: auto;
+  border-radius: 24px;
+  background: #ff6b35;
+  color: black;
+}
+
+.card-container:hover {
+  transform: scale(1.15);
+}
+
+.card-image {
+  height: 90%;
+  width: 100%;
+  background-color: #d8e2dc;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+}
+
+.card-header {
+  display: flex;
+  width: 80%;
+}
+
+.card-text__name {
+  width: 90%;
+  font-family: "Teko", sans-serif;
+}
+
+.card-text__number {
+  color: rgba(59, 59, 59, 0.753);
+  font-family: "Teko", sans-serif;
+}
