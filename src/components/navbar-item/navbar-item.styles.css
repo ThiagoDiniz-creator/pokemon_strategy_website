@@ -5,9 +5,7 @@
   padding: 0.5%;
   justify-content: center;
   align-items: center;
-}
 
-.navbar__item__text {
   color: inherit;
   font-size: x-large;
   font-family: "Montserrat", sans-serif;
@@ -36,10 +34,23 @@
 
 .navbar__item:nth-child(4) {
   color: rgb(255, 255, 255);
-  background: #ff2929;
 }
 
 .navbar__item:nth-child(4):hover {
+  color: #ffffff;
+  background: #ff6b35;
+}
+
+.navbar__item:nth-child(5) {
+  color: rgb(255, 255, 255);
+  background: #ff2929;
+}
+
+.navbar__item:nth-child(5):hover {
   color: #000000;
   background: #fbff1f;
+}
+
+.navbar__item:nth-child(6) {
+  width: 15%;
 }

@@ -45,7 +45,7 @@ class SearchPage extends React.Component {
           clickedButton={this.state.clickedButton}
         />
         {this.state.clickedButton ? (
-          <CardList pokemonList={filteredPokemonList} />
+          <CardList pokemonList={filteredPokemonList} limit={10} />
         ) : null}
       </div>
     );

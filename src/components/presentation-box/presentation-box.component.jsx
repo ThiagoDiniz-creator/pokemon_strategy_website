@@ -10,7 +10,6 @@ const PresentationBox = ({
   textColor,
   buttonClass,
   url,
-  backgroundX
 }) => (
   <div
     className="presentation-box"
@@ -20,11 +19,16 @@ const PresentationBox = ({
     }}
   >
     <div className="presentation-box__text-container">
-      <span className="presentation-box__text" style={{
-        color: textColor
-      }}>{presentationText}</span>
+      <span
+        className="presentation-box__text"
+        style={{
+          color: textColor,
+        }}
+      >
+        {presentationText}
+      </span>
     </div>
-    <Link to={url} className={`presentation-box_button ${buttonClass}`}>
+    <Link className={`presentation-box_button ${buttonClass}`} to={url}>
       {buttonText}
     </Link>
   </div>

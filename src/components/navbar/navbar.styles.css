@@ -5,14 +5,16 @@
 }
 
 .navbar {
-  width: 70%;
+  width: 75%;
   padding: 0.40%;
   display: flex;
+  vertical-align: middle;
 }
 
 .navbar__brand {
-  width: 25%;
+  width: 20%;
   padding: 0.40%;
+  margin: auto;
 }
 
 .navbar__brand__text {

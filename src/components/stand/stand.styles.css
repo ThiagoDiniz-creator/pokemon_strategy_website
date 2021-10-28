@@ -1,0 +1,24 @@
+.stand {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.stand-list {
+  list-style: none;
+}
+
+.stand-list__element {
+    display: flex;
+    align-items: center;
+}
+
+.stand-list__element:nth-child(even) {
+  background-color: grey;
+  color: white;
+}
+
+.stand-list__element:nth-child(odd) {
+  background-color: whitesmoke;
+  color: black;
+}

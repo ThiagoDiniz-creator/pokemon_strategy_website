@@ -1,6 +1,6 @@
-import firebase from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider} from "firebase/auth";
-import "firebase/firestore";
+import { initializeApp } from "firebase/app";
+import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getDoc, setDoc, doc, getFirestore } from "firebase/firestore";
 
 const config = {
   apiKey: "AIzaSyDwzcE4OWOIapeMOh6mMtT8LQIEliHqSyI",
@@ -10,11 +10,22 @@ const config = {
   messagingSenderId: "210237919859",
   appId: "1:210237919859:web:7b4833ea0395ee513a5006",
 };
-const auth = getAuth(), provider = GoogleAuthProvider;
-provider.setCustomParameters({
-    "prompt" : "login_with_google"
-});
+export const app = initializeApp(config),
+  auth = getAuth(),
+  provider = new GoogleAuthProvider(),
+  firestore = getFirestore(app);
 
-const signInWithGoogle = () => signInWithPopup(auth, provider);
+export const createUserProfileDocument = async (user) => {
+  if (user !== null) {
+    const docRef = await doc(firestore, "users/" + user.uid);
+    const docSnapshot = await getDoc(docRef);
 
-firebase.initializeApp(config);
+    if (docSnapshot.exists) {
+      setDoc(docRef, {
+        name: user.displayName,
+        email: user.email,
+      });
+    }
+  }
+};
+export const signInWithGoogle = () => signInWithPopup(auth, provider);

@@ -1,38 +1,62 @@
 import "./App.css";
 import { Route, Switch } from "react-router-dom";
+import { auth } from "./firebase/firebase.utils";
+import { connect } from "react-redux";
+import { resetCurrentUser } from "./redux/user/user.actions";
 import HomePage from "./pages/homepage/homepage.component";
+import MatchupPage from "./pages/matchup/matchup-page";
 import NavBar from "./components/navbar/navbar.component";
 import SearchPage from "./pages/searchpage/searchpage.component";
 import PokedexPage from "./pages/pokedex/pokedex-page.component";
 import SignUpSignIn from "./pages/sign-up-sign-in/sign-up-sign-in.component";
+import CartIcon from "./components/cart-icon/cart-icon.component";
+import Team from "./pages/team/team.component";
 
-function App() {
+function App({ currentUser, resetCurrentUser }) {
+  
   return (
     <div className="App">
-      <NavBar brandText={"POKEMON STRATEGY"}
-      brandUrl="/"
+      <NavBar
+        brandText={"POKEMON STRATEGY"}
+        brandUrl="/"
         items={[
           {
             url: "/search",
             content: "FIND POKEMON",
           },
           {
-            url: "/",
-            content: "BUILD MATCH UP",
-          },
-          {
-            url: "/",
+            url: "/team",
             content: "BUILD TEAM",
           },
           {
-            url: "/login",
-            content: "SIGN-UP"
-          }
+            url: "/1v1",
+            content: "1v1",
+          },
+          {
+            url: "/teamFight",
+            content: "TEAM VS TEAM"
+          },
+          {
+            url: currentUser === null ? "/login" : "/",
+            content: (currentUser === null) || currentUser.currentUser === null ? "SIGN-IN" : "SIGN-OUT",
+            handleClick:
+              currentUser === null
+                ? () => null
+                : () => {
+                    resetCurrentUser();
+                    auth.signOut();
+                  },
+          },
         ]}
+        additionalComponent={
+          [<CartIcon/>]
+        }
       />
       <Switch>
         <Route path="/" component={HomePage} exact />
+        <Route path="/1v1" component={MatchupPage} exact />
         <Route path="/search" component={SearchPage} exact />
+        <Route path="/team" component={Team} exact/>
         <Route path="/pokemon/:pokemonName" component={PokedexPage} exact />
         <Route path="/login" component={SignUpSignIn} exact />
       </Switch>
@@ -40,4 +64,12 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  resetCurrentUser: () => dispatch(resetCurrentUser()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

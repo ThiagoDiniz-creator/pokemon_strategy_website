@@ -23,6 +23,7 @@ const HomePage = () => (
       presentationText="EVER FACED A HARD CHALLENGE WHERE YOU CAN'T DEFEAT AN SPECIFIC POKEMON? BUILD THE SCENARIO AND FIND THE BEST PATH TO DEFEAT IT"
       buttonText="BUILD YOUR FIGHT SCENARIO"
       backgroundX="left"
+      url="/"
     />
     <PresentationBox
       backgroundColor="#758BFD"
@@ -31,6 +32,7 @@ const HomePage = () => (
       backgroundImage={greninjaBackground}
       presentationText="ARE YOUR POKEMON TEAM HAVING TROUBLE IN BATTLES? DISCOVER THE STRENGHTS AND WEAKNESSES OF YOUR TEAM, HOW TO SOLVE THEM AND THE BEST MATCHUPS"
       buttonText="BUILD YOUR TEAM"
+      url="/"
     />
   </div>
 );

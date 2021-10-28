@@ -1,0 +1,9 @@
+.form-sign-up{
+    width: 40%;
+}
+
+.sign-up-buttons{
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-between;
+}
