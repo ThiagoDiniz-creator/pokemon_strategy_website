@@ -32,10 +32,16 @@
   background: rgb(255, 255, 255);
 }
 
-.navbar__item:nth-child(4) {
+.navbar__item:nth-child(4):hover {
+  color: #ffffff;
+  background: #ff6b35;
+}
+
+.navbar__item:nth-child(5) {
   color: rgb(255, 255, 255);
 }
 
+<<<<<<< HEAD
 .navbar__item:nth-child(4):hover {
   color: #ffffff;
   background: #ff6b35;
@@ -46,6 +52,8 @@
   background: #ff2929;
 }
 
+=======
+>>>>>>> 6540717 (update)
 .navbar__item:nth-child(5):hover {
   color: #000000;
   background: #fbff1f;

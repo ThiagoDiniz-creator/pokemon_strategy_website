@@ -1,4 +1,8 @@
 import { pokemonTeamActionTypes } from "./pokemon_team.types";
+<<<<<<< HEAD
+=======
+import listUtil from "../../utils/pokemonList";
+>>>>>>> 6540717 (update)
 const INITIAL_STATE = {
   numberOfPokemons: 0,
   pokemons: [],
@@ -7,12 +11,28 @@ const INITIAL_STATE = {
 export const pokemonTeamReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case pokemonTeamActionTypes.ADD_POKEMON:
+<<<<<<< HEAD
       return {
         ...state,
         pokemons: [...state.pokemons, action.payload],
 
         numberOfPokemons: state.numberOfPokemons + 1,
       };
+=======
+      if (state.numberOfPokemons <= 5) {
+        const newPokemon = listUtil.getPokemonFullList(action.payload.id);
+        return {
+          ...state,
+          pokemons: [...state.pokemons, newPokemon],
+
+          numberOfPokemons: state.numberOfPokemons + 1,
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
+>>>>>>> 6540717 (update)
     case pokemonTeamActionTypes.REMOVE_POKEMON:
       return {
         ...state,

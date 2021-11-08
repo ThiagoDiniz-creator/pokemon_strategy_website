@@ -39,3 +39,19 @@
 .search-box-autocomplete__list-invisible {
   opacity: 0;
 }
+<<<<<<< HEAD
+=======
+
+.search-box-autocomplete__title {
+  font-family: monospace;
+  font-size: 1.5vw;
+  padding: 5%;
+}
+
+.search-box-autocomplete__icon-holder{
+  display: flex;
+  justify-content: right;
+  flex-grow: 1;
+}
+
+>>>>>>> 6540717 (update)

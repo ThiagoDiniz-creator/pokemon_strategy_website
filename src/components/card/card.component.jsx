@@ -21,5 +21,4 @@ const Card = ({ pokemon, handleClick, ...otherProps }) => {
     </Link>
   );
 };
-
 export default withRouter(Card);

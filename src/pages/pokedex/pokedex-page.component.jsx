@@ -1,6 +1,6 @@
 import React from "react";
 import "./pokedex-page.styles.css";
-import { getPokemonByName } from "../../utils/pokeapi";
+import { getPokemonFullList } from "../../utils/pokemonList";
 import Stats from "../../components/stats/stats.component";
 
 class PokedexPage extends React.Component {
@@ -15,7 +15,7 @@ class PokedexPage extends React.Component {
     this.setState({ pokemon: pokemon, wasLoaded: true });
 
   componentDidMount() {
-    getPokemonByName(this.props.match.params.pokemonName, (error, response) =>
+    getPokemonFullList(this.props.match.params.pokemonName, (error, response) =>
       this.loadPokemon(response)
     );
   }
