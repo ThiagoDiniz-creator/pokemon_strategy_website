@@ -14,11 +14,7 @@
 }
 
 .stand-list__element:nth-child(even) {
-<<<<<<< HEAD
-  background-color: grey;
-=======
   background-color: rgb(189, 189, 189);
->>>>>>> 6540717 (update)
   color: white;
 }
 
@@ -26,12 +22,9 @@
   background-color: whitesmoke;
   color: black;
 }
-<<<<<<< HEAD
-=======
 
 .stand-list__button-holder{
   display: flex;
   justify-content: right;
   flex-grow: 1;
 }
->>>>>>> 6540717 (update)

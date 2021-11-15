@@ -1,48 +1,46 @@
 import React from "react";
 import "./stand.styles.css";
 import { connect } from "react-redux";
-<<<<<<< HEAD
-=======
 import MinusIcon from "../minus-icon/minus-icon.component";
 import CogIcon from "../cog-icon/cog-icon.component";
->>>>>>> 6540717 (update)
+import { removePokemon } from "../../redux/pokemon_team/pokemon_team.actions";
 
-const Stand = ({ pokemonTeam }) => (
+const Stand = ({ pokemonTeam, removePokemonStand }) => (
   <div className="stand">
     <ul className="stand-list">
       {pokemonTeam.pokemons.length > 0
-<<<<<<< HEAD
-        ? pokemonTeam.pokemons.map(({ pokemon }) => (
-            <li
-              key={pokemon.species.name + " stand"}
-              className="stand-list__element"
-            >
-              <img />
-              <div>{pokemon}</div>
-            </li>
-          ))
-=======
-        ? pokemonTeam.pokemons.map((pokemon) => {
-          console.log(pokemon)
+        ? pokemonTeam.pokemons.map((pokemon, idx) => {
             return (
-              <li key={pokemon.name + " stand"} className="stand-list__element">
-                <img src={pokemon.sprite} />
+              <li
+                key={Math.random()}
+                id={Math.random()}
+                className="stand-list__element"
+              >
+                <img src={pokemon.sprite} alt={pokemon.name} />
                 <div>{pokemon.name}</div>
                 <div className="stand-list__button-holder">
-                    <MinusIcon />
-                    <CogIcon />
+                  <MinusIcon
+                    handleClick={() => {
+                      console.log(pokemon.id, idx);
+                      removePokemonStand(pokemon.id, idx);
+                    }}
+                  />
+                  <CogIcon />
                 </div>
               </li>
             );
           })
->>>>>>> 6540717 (update)
         : null}
     </ul>
   </div>
 );
 
+const mapDispatchToProps = (dispatch) => ({
+  removePokemonStand: (id, index) => dispatch(removePokemon(id, index)),
+});
+
 const mapStateToProps = ({ pokemonTeam }) => ({
   pokemonTeam,
 });
 
-export default connect(mapStateToProps)(Stand);
+export default connect(mapStateToProps, mapDispatchToProps)(Stand);

@@ -39,8 +39,6 @@
 .search-box-autocomplete__list-invisible {
   opacity: 0;
 }
-<<<<<<< HEAD
-=======
 
 .search-box-autocomplete__title {
   font-family: monospace;
@@ -54,4 +52,3 @@
   flex-grow: 1;
 }
 
->>>>>>> 6540717 (update)

@@ -1,11 +1,10 @@
 import React from "react";
 import { ReactComponent as CartIconSvg } from "../../assets/cart-icon.svg";
 import { connect } from "react-redux";
+import "./cart-icon.styles.css";
 
 const CartIcon = ({ pokemonTeam }) => (
-  <li className="navbar__item" >
-    <CartIconSvg style={{ width: "50%", height: "100%" }} />
-  </li>
+    <CartIconSvg className="cart-icon" />
 );
 
 const mapStateToProps = (state) => ({

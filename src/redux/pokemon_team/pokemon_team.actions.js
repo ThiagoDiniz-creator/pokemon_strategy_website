@@ -13,10 +13,11 @@ export const addPokemon = (pokemon) => ({
   payload: pokemon,
 });
 
-export const removePokemon = (pokemonSelectId) => ({
-  type: pokemonTeamActionTypes.removePokemon,
+export const removePokemon = (id, index) => ({
+  type: pokemonTeamActionTypes.REMOVE_POKEMON,
   payload: {
-    selectId: pokemonSelectId,
+    id,
+    index,
   },
 });
 

@@ -29,6 +29,7 @@ class PokedexPage extends React.Component {
           <img
             className="presentation-image"
             src={`${pokemon.sprites.versions["generation-v"]["black-white"].front_default}`}
+            alt={pokemon.name}
           />
         </div>
         <div className="pokedex-rating-container"></div>

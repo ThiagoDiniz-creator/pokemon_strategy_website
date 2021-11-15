@@ -19,7 +19,7 @@ const NavBar = ({ brandText, brandUrl, items, additionalComponent }) => (
             handleClick={handleClick}
           />
         ))}
-        {additionalComponent.map((component) => component)}
+        {additionalComponent.map((component) => <div key={Math.random()} className="generic-container"> {component} </div>)}
       </ul>
     </nav>
   </header>
