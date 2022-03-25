@@ -1,7 +1,8 @@
 import React from "react";
 import "./pokedex-page.styles.css";
-import { getPokemonFullList } from "../../utils/pokemonList";
+import { getPokemonFullListName } from "../../utils/pokemonList";
 import Stats from "../../components/stats/stats.component";
+import PokedexPresentationContainer from "../../components/pokedex-presentation-container/pokedex-presentation-container.component";
 
 class PokedexPage extends React.Component {
   constructor(props) {
@@ -12,11 +13,11 @@ class PokedexPage extends React.Component {
     };
   }
   loadPokemon = (pokemon) =>
-    this.setState({ pokemon: pokemon, wasLoaded: true });
+    this.setState({ pokemon: pokemon, wasLoaded: true }, console.log(pokemon));
 
   componentDidMount() {
-    getPokemonFullList(this.props.match.params.pokemonName, (error, response) =>
-      this.loadPokemon(response)
+    this.loadPokemon(
+      getPokemonFullListName(this.props.match.params.pokemonName)
     );
   }
 
@@ -25,17 +26,13 @@ class PokedexPage extends React.Component {
     return wasLoaded ? (
       <div className="pokedex-container">
         <Stats pokemon={pokemon} />
-        <div className="pokedex-presentation-container">
-          <img
-            className="presentation-image"
-            src={`${pokemon.sprites.versions["generation-v"]["black-white"].front_default}`}
-            alt={pokemon.name}
-          />
+        <PokedexPresentationContainer pokemon={pokemon} />
+        <div className="pokedex-rating-container">
+          <center>UNDER CONSTRUCTION</center>
         </div>
-        <div className="pokedex-rating-container"></div>
       </div>
     ) : (
-      <div></div>
+      <div>Não carreguei</div>
     );
   }
 }

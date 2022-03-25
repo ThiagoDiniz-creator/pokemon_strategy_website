@@ -13,7 +13,6 @@ import CartIcon from "./components/cart-icon/cart-icon.component";
 import Team from "./pages/team/team.component";
 
 function App({ currentUser, resetCurrentUser }) {
-  
   return (
     <div className="App">
       <NavBar
@@ -34,31 +33,33 @@ function App({ currentUser, resetCurrentUser }) {
           },
           {
             url: "/teamFight",
-            content: "TEAM VS TEAM"
+            content: "TEAM VS TEAM",
           },
-          {
-            url: currentUser === null ? "/login" : "/",
-            content: (currentUser === null) || currentUser.currentUser === null ? "SIGN-IN" : "SIGN-OUT",
-            handleClick:
-              currentUser === null
-                ? () => null
-                : () => {
-                    resetCurrentUser();
-                    auth.signOut();
-                  },
-          },
+          currentUser === null
+            ? {
+                url: "login",
+                content: "SIGN-IN",
+                handleClick: () => null,
+              }
+            : {
+                url: "/",
+                content: "SIGN-OUT",
+                handleClick: () => {
+                  resetCurrentUser();
+                  auth.signOut();
+                },
+              },
         ]}
-        additionalComponent={
-          [<CartIcon/>]
-        }
+        additionalComponent={[<CartIcon />]}
       />
       <Switch>
         <Route path="/" component={HomePage} exact />
         <Route path="/1v1" component={MatchupPage} exact />
         <Route path="/search" component={SearchPage} exact />
-        <Route path="/team" component={Team} exact/>
+        <Route path="/team" component={Team} exact />
         <Route path="/pokemon/:pokemonName" component={PokedexPage} exact />
         <Route path="/login" component={SignUpSignIn} exact />
+        <Route path="" component={() => <div>There is nothing here!</div>} />
       </Switch>
     </div>
   );

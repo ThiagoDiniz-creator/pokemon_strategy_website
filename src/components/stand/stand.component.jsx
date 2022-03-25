@@ -30,7 +30,9 @@ const Stand = ({ pokemonTeam, removePokemonStand }) => (
               </li>
             );
           })
-        : null}
+        : <h1>
+          No pokemon selected yet
+          </h1>}
     </ul>
   </div>
 );

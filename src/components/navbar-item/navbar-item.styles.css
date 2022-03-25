@@ -1,13 +1,13 @@
 .navbar__item {
   display: flex;
   width: 30%;
-  margin-top: 0.25vh;
-  padding: 0.5%;
+  margin-top: 0.2vmax;
+  padding: 0.05vmax;
   justify-content: center;
   align-items: center;
 
   color: inherit;
-  font-size: x-large;
+  font-size: 1.5vmax;
 }
 
 .navbar__item:nth-child(1),

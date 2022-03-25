@@ -30,7 +30,7 @@ const HomePage = () => (
       buttonClass="presentation-box_button__blue"
       textColor="#FFFFFF"
       backgroundImage={greninjaBackground}
-      presentationText="ARE YOUR POKEMON TEAM HAVING TROUBLE IN BATTLES? DISCOVER THE STRENGHTS AND WEAKNESSES OF YOUR TEAM, HOW TO SOLVE THEM AND THE BEST MATCHUPS"
+      presentationText="IS YOUR POKEMON TEAM HAVING TROUBLE IN BATTLES? DISCOVER THE STRENGTHS AND WEAKNESSES OF YOUR TEAM, HOW TO SOLVE THEM, AND THE BEST MATCHUPS"
       buttonText="BUILD YOUR TEAM"
       url="/"
     />

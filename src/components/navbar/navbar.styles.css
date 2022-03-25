@@ -1,27 +1,28 @@
 .main__header {
   display: flex;
+  flex-grow: 1;
   width: 100%;
   background: rgba(0, 0, 0, 0.829);
+  justify-items: center;
 }
 
 .navbar {
-  width: 75%;
-  padding: 0.40%;
+  width: 80%;
+  padding: 0.6vmax;
   display: flex;
-  vertical-align: middle;
 }
 
 .navbar__brand {
   width: 20%;
-  padding: 0.40%;
   margin: auto;
 }
 
 .navbar__brand__text {
   text-decoration: none;
-  font-size: 150%;
+  font-size: 1.4vmax;
   font-weight: bolder;
-  margin: 0.25vh 0vh 0vh 1vw;
+  display: flex;
+  margin: 0.8vmax 0vh 0vh 1vmax;
   font-family: "Montserrat", sans-serif;
   color: rgb(255, 255, 255);
 }
@@ -33,14 +34,14 @@
 
 .navbar__items {
   list-style: none;
-  width: 100%;
+  flex-grow: 1;
   display: flex;
   justify-content: flex-end;
 }
 
 .generic-container{
-  width: 8%;
-  padding: 1%;
+  width: 4vmax;
+  padding: .8vmax;
   display: flex;
   align-items: center;
 }

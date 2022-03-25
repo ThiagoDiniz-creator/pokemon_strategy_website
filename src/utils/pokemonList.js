@@ -20,11 +20,17 @@ const getPokemonFullList = (id) =>
     (pokemon) => pokemon.id === id
   );
 
+const getPokemonFullListName = (name) =>
+  require("../assets/JSON/fullPokemonList.json").find(
+    (pokemon) => pokemon.name === name
+  );
+
 module.exports = {
   getShortList,
   getPokemonShortList,
   getShortListWithStats,
   getPokemonShortListWithStats,
   getFullList,
+  getPokemonFullListName,
   getPokemonFullList,
 };
