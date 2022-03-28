@@ -1,6 +1,5 @@
 .main__header {
   display: flex;
-  flex-grow: 1;
   width: 100%;
   background: rgba(0, 0, 0, 0.829);
   justify-items: center;
