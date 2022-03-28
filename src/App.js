@@ -21,7 +21,7 @@ function App({ currentUser, resetCurrentUser }) {
         items={[
           {
             url: "/search",
-            content: "FIND POKEMON",
+            content: "POKEDEX",
           },
           {
             url: "/team",

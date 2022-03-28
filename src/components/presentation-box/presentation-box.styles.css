@@ -1,62 +1,88 @@
-.presentation-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-repeat: no-repeat;
-  background-position-x: right;
-  background-size: 60vmax;
-  background-position-y: center;
+@media (max-width: 3000px) {
+  .presentation-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-size: 60vmax;
+    background-position-y: center;
+  }
+
+  .presentation-box__text-container {
+    height: 60vh;
+    display: flex;
+    justify-content: inherit;
+  }
+
+  .presentation-box__text {
+    align-self: center;
+    text-align: center;
+    font-size: 2.5vmax;
+    width: 40%;
+  }
+
+  .presentation-box_button {
+    border: 0.5px solid black;
+    font-size: 2vmax;
+    padding: 0.8vmax;
+    margin-bottom: 1vh;
+  }
+
+  .presentation-box_button__white {
+    cursor: pointer;
+    background-color: rgb(0, 0, 0);
+    color: white;
+  }
+
+  .presentation-box_button__white:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+  }
+
+  .presentation-box_button__orange {
+    cursor: pointer;
+    background-color: rgb(75, 67, 184);
+    color: white;
+  }
+
+  .presentation-box_button__orange:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(75, 67, 184);
+  }
+
+  .presentation-box_button__blue {
+    cursor: pointer;
+    background-color: #e02f2f;
+    color: white;
+  }
+
+  .presentation-box_button__blue:hover {
+    background-color: rgb(255, 255, 255);
+    color: #e02f2f;
+  }
+}
+@media (max-width: 400px) {
+  .presentation-box_button {
+    border: 0.5px solid black;
+    font-size: 3vmax;
+    padding: 0.5vmax;
+    margin-bottom: 1vh;
+  }
+  .presentation-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: none;
+  }
 }
 
-.presentation-box__text-container {
-  height: 60vh;
-  display: flex;
-  justify-content: inherit;
-}
+@media (max-width: 800px) {
+  .presentation-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: none;
 
-.presentation-box__text {
-  align-self: center;
-  text-align: center;
-  font-size: 2.5vmax;
-  width: 40%;
-}
-
-.presentation-box_button {
-  border: 0.5px solid black;
-  font-size: 2vmax;
-  padding: 0.8vmax;
-  margin-bottom: 1vh;
-}
-
-.presentation-box_button__white {
-  cursor: pointer;
-  background-color: rgb(0, 0, 0);
-  color: white;
-}
-
-.presentation-box_button__white:hover {
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-}
-
-.presentation-box_button__orange {
-  cursor: pointer;
-  background-color: rgb(75, 67, 184);
-  color: white;
-}
-
-.presentation-box_button__orange:hover {
-  background-color: rgb(255, 255, 255);
-  color: rgb(75, 67, 184);
-}
-
-.presentation-box_button__blue {
-  cursor: pointer;
-  background-color: #e02f2f;
-  color: white;
-}
-
-.presentation-box_button__blue:hover {
-  background-color: rgb(255, 255, 255);
-  color: #e02f2f;
+  }
 }

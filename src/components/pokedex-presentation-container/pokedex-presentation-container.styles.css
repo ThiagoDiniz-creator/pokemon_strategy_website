@@ -1,31 +1,50 @@
 .pokedex-presentation-container {
   width: 33.33%;
-  background-color: lightcoral;
+  background-color: white;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pokedex-presentation-container * {
+  display: flex;
   justify-content: center;
+  font-family:'Courier New', Courier, monospace;
+  -webkit-font-smoothing: antialiased;
+  font-weight: normal;
 }
 
-.pokedex-presentation-container *{
-  display: flex;
-}
-
-.presentation-image {
+.pokedex-presentation-image {
   width: 14vw;
   height: fit-content;
   background-color: white;
 }
 
-.presentation-image-container{
-  width: 100%;
-  justify-content: center;
-  padding: 10px;
-  height: fit-content;
+.pokedex-presentation-name {
 }
 
-.presentation-name{
-  width: fit-content;
-  height: fit-content;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
+.pokedex-presentation-type {
+  padding: 0.3vmax;
+  border-radius: 10vmax;
+}
+
+.pokedex-presentation-data {
+  padding: 1vmax;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.pokedex-presentation-data__height {
+}
+
+.pokedex-presentation-data__weight {
+}
+
+.pokedex-presentation-data_height-title {
+  width: 100%;
+  align-self: center;
+  margin-left: 0.1vmax;
+}
+
+.pokedex-presentation-data_height-content {
 }

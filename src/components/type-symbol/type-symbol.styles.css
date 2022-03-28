@@ -1,0 +1,14 @@
+.type-symbol-container {
+  height: 10vmax;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+.type-symbol__caption {
+  color: black;
+  -webkit-font-smoothing: antialiased;
+}
+
+.type-symbol__image{
+    height: 5vmax;
+}

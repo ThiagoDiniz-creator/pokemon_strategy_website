@@ -1,6 +1,6 @@
 .stats-container {
   height: inherit;
-  background-color: white;
+  background-color: coral;
   display: flex;
   flex-grow: 1;
 }
