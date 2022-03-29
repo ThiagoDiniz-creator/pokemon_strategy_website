@@ -6,24 +6,29 @@
   flex-direction: column;
   align-items: center;
   padding: 1.5vmax 0px 0px 0px;
+  width: 33%;
 }
 
 .stats-container * {
   display: flex;
   font-family: "Lato", sans-serif;
-  font-size: 20px;
 }
 
 .stats-abilities{
   background-color: aqua;
   width: 80%;
   flex-wrap: wrap;
+  justify-content: space-around;
+  font-size: 20px;
 }
 
 .stats-abilities__item{
-  width: 40%;
+  width: 30%;
   justify-content: center;
   padding: 20px;
+  height: 8vw;
+  background-color: brown;
+  border: 1px black solid;
 }
 
 .stats-abilities__title{

@@ -23,6 +23,7 @@ class PokedexPage extends React.Component {
 
   render() {
     const { wasLoaded, pokemon } = this.state;
+
     return wasLoaded ? (
       <div className="pokedex-container">
         <Stats pokemon={pokemon} />

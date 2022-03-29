@@ -1,0 +1,31 @@
+.stats-abilities__item {
+  width: 30%;
+  height: 10vw;
+  background-color: brown;
+  border: 1px black solid;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.stats-abilities__item-title{
+  text-align: center;
+  font-weight: bold;
+  height: fit-content;
+}
+
+.stats-abilities__item-button{
+  width: fit-content;
+  height: min-content;
+  padding: 0.5vw;
+  margin-top: 0.3vw;
+  align-items: center;
+  background-color: rgb(218, 255, 85);
+  border: 1px black solid;
+}
+
+.stats-abilities__item-content{
+  height: fit-content;
+  font-size: 0.8vw;
+  text-align: justify;
+
+}

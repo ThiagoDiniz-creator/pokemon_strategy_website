@@ -25,6 +25,11 @@ const getPokemonFullListName = (name) =>
     (pokemon) => pokemon.name === name
   );
 
+const getAbility = (name) =>
+  require("../assets/JSON/abilities.json").find(
+    (ability) => ability.name == name
+  );
+
 module.exports = {
   getShortList,
   getPokemonShortList,
@@ -33,4 +38,5 @@ module.exports = {
   getFullList,
   getPokemonFullListName,
   getPokemonFullList,
+  getAbility,
 };

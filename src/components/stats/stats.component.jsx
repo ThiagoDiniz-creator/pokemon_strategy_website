@@ -1,8 +1,8 @@
 import React from "react";
+import AbilityBox from "../ability-box/ability-box.component";
 import "./stats.styles.css";
 
 const Stats = ({ pokemon }) => {
-    console.log(pokemon)
   return (
     <div className="stats-container">
       <div className="stats-abilities">
@@ -10,9 +10,7 @@ const Stats = ({ pokemon }) => {
               Abilities
           </div>
         {pokemon.abilities.map(({ ability }) => (
-          <div className="stats-abilities__item" key={ability.name}>
-            {ability.name.charAt(0).toUpperCase() + ability.name.slice(1)}
-          </div>
+          <AbilityBox abilityName={ability.name} />
         ))}
       </div>
     </div>
