@@ -10,5 +10,6 @@
 }
 
 .type-symbol__image{
-    height: 5vmax;
+    height: 4vmax;
+    margin: 0.5vmax;
 }

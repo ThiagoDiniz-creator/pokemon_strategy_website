@@ -50,9 +50,21 @@ const TypeSymbol = ({ typeName }) => {
   const typeSymbolImage = `${getTypeImage(typeName)}`;
 
   return (
-    <div className="type-symbol-container">
-      <img src={typeSymbolImage} className="type-symbol__image"/>
-      <span className="type-symbol__caption">{typeName.charAt(0).toUpperCase() + typeName.slice(1)}</span>
+    <div
+      className="type-symbol-container"
+      key={"type-symbol-container" + typeName}
+    >
+      <img
+        src={typeSymbolImage}
+        className="type-symbol__image"
+        key={"type-symbol__image" + typeName}
+      />
+      <span
+        className="type-symbol__caption"
+        key={"type-symbol__caption" + typeName}
+      >
+        {typeName.charAt(0).toUpperCase() + typeName.slice(1)}
+      </span>
     </div>
   );
 };

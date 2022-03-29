@@ -2,8 +2,7 @@ import React from "react";
 import TypeSymbol from "../type-symbol/type-symbol.component";
 import "./pokedex-presentation-container.styles.css";
 
-import Image from 'react-bootstrap/Image'
-import { Card } from "react-bootstrap";
+import Image from "react-bootstrap/Image";
 
 const PokedexPresentationContainer = ({ pokemon }) => {
   pokemon.name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
@@ -16,18 +15,22 @@ const PokedexPresentationContainer = ({ pokemon }) => {
           alt={pokemon.name}
           roundedCircle={true}
           fluid={true}
+          key={"image" + pokemon.name}
         />
       </div>
       <div className="pokedex-presentation-name">{pokemon.name}</div>
+      <div>{"ID: " + pokemon.id}</div>
+
       <div className="pokedex-presentation-type">
+        <div className="pokedex-presentation-type__title">Types</div>
         {pokemon.types.map(({ type: { name } }) => (
-          <div key={name + pokemon.name}>
-            {" "}
-            <TypeSymbol typeName={name} />{" "}
-          </div>
+          <TypeSymbol key={"type-symbol" + name} typeName={name} />
         ))}
       </div>
       <div className="pokedex-presentation-data">
+        <div className="pokedex-presentation-data__title">
+          Data
+        </div>
         <div className="pokedex-presentation-data__height">
           <div className="pokedex-presentation-data_height-title">Height</div>
           <div className="pokedex-presentation-data_height-content">
@@ -36,7 +39,10 @@ const PokedexPresentationContainer = ({ pokemon }) => {
           </div>
         </div>
         <div className="pokedex-presentation-data__weight">
-          {pokemon.weight / 10 + " kilograms"}
+          <div className="pokedex-presentation-data_height-title">Weight</div>
+          <div className="pokedex-presentation-data_height-content">
+            {pokemon.weight / 10 + " kilograms"}
+          </div>
         </div>
       </div>
     </div>

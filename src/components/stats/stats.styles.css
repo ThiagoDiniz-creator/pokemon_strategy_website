@@ -3,8 +3,32 @@
   background-color: coral;
   display: flex;
   flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5vmax 0px 0px 0px;
 }
 
-.stats-container_id{
-  flex-grow: 1;
+.stats-container * {
+  display: flex;
+  font-family: "Lato", sans-serif;
+  font-size: 20px;
+}
+
+.stats-abilities{
+  background-color: aqua;
+  width: 80%;
+  flex-wrap: wrap;
+}
+
+.stats-abilities__item{
+  width: 40%;
+  justify-content: center;
+  padding: 20px;
+}
+
+.stats-abilities__title{
+  width: 100%;
+  justify-content: center;
+  margin: 10px;
+  font-family: "Lato", sans-serif;
 }

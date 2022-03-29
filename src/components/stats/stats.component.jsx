@@ -1,11 +1,22 @@
 import React from "react";
 import "./stats.styles.css";
 
-const Stats = ({pokemon}) =>(
+const Stats = ({ pokemon }) => {
+    console.log(pokemon)
+  return (
     <div className="stats-container">
-        {pokemon.stats[0].base_stat}
-        {pokemon.abilities.map(({ability}) => <p key={ability.name}>{ability.name}</p>)}
+      <div className="stats-abilities">
+          <div className="stats-abilities__title">
+              Abilities
+          </div>
+        {pokemon.abilities.map(({ ability }) => (
+          <div className="stats-abilities__item" key={ability.name}>
+            {ability.name.charAt(0).toUpperCase() + ability.name.slice(1)}
+          </div>
+        ))}
+      </div>
     </div>
-)
+  );
+};
 
 export default Stats;
