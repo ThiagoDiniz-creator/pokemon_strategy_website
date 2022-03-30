@@ -12,7 +12,7 @@ const Stats = ({ pokemon }) => {
         <div className="stats__list">
           {pokemon.stats.map((stat) => {
             return (
-              <div className="stats__list-item">
+              <div className="stats__list-item" key={"stats__list-item" + stat.base_stat}>
                 <div className="stats__list-item-title">
                   {stat.stat.name.toUpperCase()}
                 </div>

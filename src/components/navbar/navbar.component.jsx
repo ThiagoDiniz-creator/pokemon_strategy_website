@@ -1,10 +1,9 @@
 import React from "react";
 import NavbarItem from "../navbar-item/navbar-item.component";
 import "./navbar.styles.css";
-import { Nav } from "react-bootstrap";
 
 const NavBar = ({ brandText, brandUrl, items, additionalComponent }) => (
-  <Nav>
+  <nav>
     <header className="main__header">
       <div className="navbar__brand">
         <a className="navbar__brand__text" href={brandUrl}>
@@ -29,7 +28,7 @@ const NavBar = ({ brandText, brandUrl, items, additionalComponent }) => (
         </ul>
       </nav>
     </header>
-  </Nav>
+  </nav>
 );
 
 export default NavBar;

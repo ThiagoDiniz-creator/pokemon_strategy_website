@@ -1,0 +1,6 @@
+.individual-rating-container{
+    background-color: rgb(238, 124, 124);
+    flex-grow: 1;
+    padding: 1vw;
+    display: block;
+}

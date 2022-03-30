@@ -9,14 +9,12 @@ const AbilityBox = ({ abilities }) => {
     return newAbility;
   });
 
-  console.log(fetchedAbilities)
-
   return (
     <div className="stats-abilities">
       <div className="stats-abilities__title">Abilities</div>
       {fetchedAbilities.map((ability) => {
         return (
-          <div className="stats-abilities__item">
+          <div className="stats-abilities__item" key={"stats-abilities__item" + ability.name}>
             <div className="stats-abilities__item-title">
               {ability.name.charAt(0).toUpperCase() + ability.name.slice(1)}
             </div>

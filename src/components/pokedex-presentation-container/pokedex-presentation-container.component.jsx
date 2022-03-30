@@ -2,19 +2,15 @@ import React from "react";
 import TypeSymbol from "../type-symbol/type-symbol.component";
 import "./pokedex-presentation-container.styles.css";
 
-import Image from "react-bootstrap/Image";
-
 const PokedexPresentationContainer = ({ pokemon }) => {
   pokemon.name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
   return (
     <div className="pokedex-presentation-container">
       <div>
-        <Image
+        <img
           className="pokedex-presentation-image"
           src={`${pokemon.sprite}`}
           alt={pokemon.name}
-          roundedCircle={true}
-          fluid={true}
           key={"image" + pokemon.name}
         />
       </div>
