@@ -1,12 +1,10 @@
 .stats-container {
-  height: inherit;
-  background-color: coral;
+  background-color: white;
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  padding: 1.5vmax 0px 0px 0px;
-  width: 33%;
+  width: 33.3333%;
 }
 
 .stats-container * {
@@ -14,26 +12,38 @@
   font-family: "Lato", sans-serif;
 }
 
-.stats-abilities{
-  background-color: aqua;
-  width: 80%;
+.stats__list {
   flex-wrap: wrap;
-  justify-content: space-around;
-  font-size: 20px;
-}
-
-.stats-abilities__item{
-  width: 30%;
+  width: 80%;
   justify-content: center;
-  padding: 20px;
-  height: 8vw;
-  background-color: brown;
-  border: 1px black solid;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.stats__list-item {
+  justify-content: center;
+  flex-wrap: wrap;
+  padding:0.4vw;
+  border: 1px solid black;
 }
 
-.stats-abilities__title{
+.stats__list-item-title {
   width: 100%;
   justify-content: center;
-  margin: 10px;
-  font-family: "Lato", sans-serif;
+  text-align: center;
+}
+
+.stats__list-item-value {
+}
+
+.stats__list-title {
+  font-size: larger;
+  height: fit-content;
+  margin: auto;
+}
+
+.stats__list-container {
+  margin-top: 0.5vw;
+  padding: 2vw;
+  border: 1px solid black;
+
 }

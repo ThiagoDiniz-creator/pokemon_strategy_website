@@ -29,14 +29,11 @@
   padding: 0.4vmax;
 
   border: black 1px solid;
-  background-color: rgb(195, 255, 235);
   flex-wrap: wrap;
 }
 
 .pokedex-presentation-data {
-  background-color: tomato;
   border: black 1px solid;
-  color: white;
   padding: 0.4vmax;
   flex-wrap: wrap;
   width: 80%;

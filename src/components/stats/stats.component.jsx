@@ -5,13 +5,22 @@ import "./stats.styles.css";
 const Stats = ({ pokemon }) => {
   return (
     <div className="stats-container">
-      <div className="stats-abilities">
-          <div className="stats-abilities__title">
-              Abilities
-          </div>
-        {pokemon.abilities.map(({ ability }) => (
-          <AbilityBox abilityName={ability.name} />
-        ))}
+      <AbilityBox abilities={pokemon.abilities} />
+
+      <div className="stats__list-container">
+        <div className="stats__list-title">Stats</div>
+        <div className="stats__list">
+          {pokemon.stats.map((stat) => {
+            return (
+              <div className="stats__list-item">
+                <div className="stats__list-item-title">
+                  {stat.stat.name.toUpperCase()}
+                </div>
+                <div className="stats__list-item-value">{stat.base_stat}</div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

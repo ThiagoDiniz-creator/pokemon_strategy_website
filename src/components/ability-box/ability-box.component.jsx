@@ -2,16 +2,35 @@ import React from "react";
 import { getAbility } from "../../utils/pokemonList";
 import "./ability-box.styles.css";
 
-const AbilityBox = ({ abilityName }) => {
-  const ability = getAbility(abilityName);
-  console.log(ability);
+const AbilityBox = ({ abilities }) => {
+  const fetchedAbilities = abilities.map((element) =>{
+    const newAbility = getAbility(element.ability.name);
+    newAbility.hidden = element.is_hidden;
+    return newAbility;
+  });
+
+  console.log(fetchedAbilities)
+
   return (
-    <div className="stats-abilities__item">
-      <div className="stats-abilities__item-title">{ability.name}</div>
-      <div className="stats-abilities__item-content">
-        {ability.effect_entries.find((effect) => effect.language.name == "en").effect}
-      </div>
-      <button className={"stats-abilities__item-button"}>Read More</button>
+    <div className="stats-abilities">
+      <div className="stats-abilities__title">Abilities</div>
+      {fetchedAbilities.map((ability) => {
+        return (
+          <div className="stats-abilities__item">
+            <div className="stats-abilities__item-title">
+              {ability.name.charAt(0).toUpperCase() + ability.name.slice(1)}
+            </div>
+            <div className="stats-abilities__item-content">
+              {
+                ability.flavor_text_entry.flavor_text
+              }
+            </div>
+            <button className={"stats-abilities__item-button"}>
+              Read More
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 };
