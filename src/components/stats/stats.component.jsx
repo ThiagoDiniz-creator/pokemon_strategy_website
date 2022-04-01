@@ -2,25 +2,27 @@ import React from "react";
 import AbilityBox from "../ability-box/ability-box.component";
 import "./stats.styles.css";
 
+import { Grid } from "@mui/material";
+import { Typography } from "@mui/material";
+
 const Stats = ({ pokemon }) => {
   return (
     <div className="stats-container">
       <AbilityBox abilities={pokemon.abilities} />
 
       <div className="stats__list-container">
-        <div className="stats__list-title">Stats</div>
-        <div className="stats__list">
+      <Typography variant="h4">Stats</Typography>
+
+        <Grid container spacing={0}>
           {pokemon.stats.map((stat) => {
             return (
-              <div className="stats__list-item" key={"stats__list-item" + stat.base_stat}>
-                <div className="stats__list-item-title">
-                  {stat.stat.name.toUpperCase()}
-                </div>
-                <div className="stats__list-item-value">{stat.base_stat}</div>
-              </div>
+              <Grid className="stats__list-item" xs={6} style={{flexWrap: "wrap"}}item key={"stats__list-item" + stat.base_stat + stat.stat.name}>
+                <Typography style={{width: "100%"}} paragraph>{stat.stat.name.toUpperCase()}</Typography>
+                <Typography paragraph>{stat.base_stat}</Typography>
+              </Grid>
             );
           })}
-        </div>
+        </Grid>
       </div>
     </div>
   );

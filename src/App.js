@@ -12,9 +12,11 @@ import SignUpSignIn from "./pages/sign-up-sign-in/sign-up-sign-in.component";
 import CartIcon from "./components/cart-icon/cart-icon.component";
 import Team from "./pages/team/team.component";
 
+import { Container } from "@mui/material";
+
 function App({ currentUser, resetCurrentUser }) {
   return (
-    <div className="App">
+    <Container maxWidth="xxl" disableGutters>
       <NavBar
         brandText={"POKEMON STRATEGY"}
         brandUrl="/"
@@ -61,7 +63,7 @@ function App({ currentUser, resetCurrentUser }) {
         <Route path="/login" component={SignUpSignIn} exact />
         <Route path="" component={() => <div>There is nothing here!</div>} />
       </Switch>
-    </div>
+    </Container>
   );
 }
 

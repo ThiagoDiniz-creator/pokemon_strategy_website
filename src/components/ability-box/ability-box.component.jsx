@@ -2,6 +2,11 @@ import React from "react";
 import { getAbility } from "../../utils/pokemonList";
 import "./ability-box.styles.css";
 
+import { Typography } from "@mui/material";
+import { Button } from "@mui/material";
+import { Grid } from "@mui/material";
+
+
 const AbilityBox = ({ abilities }) => {
   const fetchedAbilities = abilities.map((element) =>{
     const newAbility = getAbility(element.ability.name);
@@ -11,21 +16,24 @@ const AbilityBox = ({ abilities }) => {
 
   return (
     <div className="stats-abilities">
-      <div className="stats-abilities__title">Abilities</div>
+      <Typography paragraph gutterBottom align="center" variant="h5" style={{
+        width: "100%",
+        justifyContent: "center"
+      }}>Abilities</Typography>
       {fetchedAbilities.map((ability) => {
         return (
           <div className="stats-abilities__item" key={"stats-abilities__item" + ability.name}>
-            <div className="stats-abilities__item-title">
+            <Typography variant="h6">
               {ability.name.charAt(0).toUpperCase() + ability.name.slice(1)}
-            </div>
-            <div className="stats-abilities__item-content">
+            </Typography>
+            <Typography variant="caption" className="stats-abilities__item-content">
               {
                 ability.flavor_text_entry.flavor_text
               }
-            </div>
-            <button className={"stats-abilities__item-button"}>
+            </Typography>
+            <Button  variant="contained">
               Read More
-            </button>
+            </Button>
           </div>
         );
       })}

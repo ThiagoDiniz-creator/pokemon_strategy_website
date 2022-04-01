@@ -3,7 +3,7 @@ import "./pokedex-page.styles.css";
 import { getPokemonFullListName } from "../../utils/pokemonList";
 import Stats from "../../components/stats/stats.component";
 import PokedexPresentationContainer from "../../components/pokedex-presentation-container/pokedex-presentation-container.component";
-import IndividualRating from "../../components/individual-rating-container/individual-rating-container.component";
+import IndividualRating from "../../components/individual-rating/individual-rating.component";
 
 class PokedexPage extends React.Component {
   constructor(props) {

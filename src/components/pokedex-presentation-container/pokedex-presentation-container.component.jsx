@@ -2,6 +2,8 @@ import React from "react";
 import TypeSymbol from "../type-symbol/type-symbol.component";
 import "./pokedex-presentation-container.styles.css";
 
+import Typography from "@mui/material/Typography";
+
 const PokedexPresentationContainer = ({ pokemon }) => {
   pokemon.name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
   return (
@@ -14,31 +16,31 @@ const PokedexPresentationContainer = ({ pokemon }) => {
           key={"image" + pokemon.name}
         />
       </div>
-      <div className="pokedex-presentation-name">{pokemon.name}</div>
-      <div>{"ID: " + pokemon.id}</div>
+      <Typography gutterBottom  variant="h4" className="pokedex-presentation-name">{pokemon.name}</Typography>
+      <Typography>{"ID: " + pokemon.id}</Typography>
 
       <div className="pokedex-presentation-type">
-        <div className="pokedex-presentation-type__title">Types</div>
+        <Typography className="pokedex-presentation-type__title" variant="h5">Types</Typography>
         {pokemon.types.map(({ type: { name } }) => (
           <TypeSymbol key={"type-symbol" + name} typeName={name} />
         ))}
       </div>
       <div className="pokedex-presentation-data">
-        <div className="pokedex-presentation-data__title">
+        <Typography variant="h5" className="pokedex-presentation-data__title">
           Data
-        </div>
+        </Typography>
         <div className="pokedex-presentation-data__height">
-          <div className="pokedex-presentation-data_height-title">Height</div>
-          <div className="pokedex-presentation-data_height-content">
+          <Typography  className="pokedex-presentation-data_height-title" >Height</Typography>
+          <Typography >
             {" "}
             {pokemon.height / 10 + " meters"}
-          </div>
+          </Typography>
         </div>
         <div className="pokedex-presentation-data__weight">
-          <div className="pokedex-presentation-data_height-title">Weight</div>
-          <div className="pokedex-presentation-data_height-content">
+          <Typography className="pokedex-presentation-data_height-title" >Weight</Typography>
+          <Typography >
             {pokemon.weight / 10 + " kilograms"}
-          </div>
+          </Typography>
         </div>
       </div>
     </div>
