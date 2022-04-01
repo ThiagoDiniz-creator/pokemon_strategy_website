@@ -17,8 +17,8 @@ const Stats = ({ pokemon }) => {
           {pokemon.stats.map((stat) => {
             return (
               <Grid className="stats__list-item" xs={6} style={{flexWrap: "wrap"}}item key={"stats__list-item" + stat.base_stat + stat.stat.name}>
-                <Typography style={{width: "100%"}} paragraph>{stat.stat.name.toUpperCase()}</Typography>
-                <Typography paragraph>{stat.base_stat}</Typography>
+                <Typography sx={{width: "100%", textAlign: "center", display: "flex", justifyContent: "center"}} paragraph>{stat.stat.name.toUpperCase()}</Typography>
+                <Typography sx={{height: "fit-content"}}>{stat.base_stat}</Typography>
               </Grid>
             );
           })}

@@ -4,7 +4,8 @@ import SearchBox from "../../components/search-box/search-box.component";
 import shortPokemonList from "../../assets/JSON/shortPokemonList.json";
 import CardList from "../../components/card-list/card-list.component";
 
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, Alert } from "@mui/material";
+
 
 class SearchPage extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class SearchPage extends React.Component {
       filteredPokemonList: "",
       searchBoxContent: "",
       clickedButton: false,
+      showAlert: false,
     };
   }
 
@@ -31,9 +33,9 @@ class SearchPage extends React.Component {
       this.state.searchBoxContent !== "" &&
       (event.key === "Enter" || event.key === undefined)
     ) {
-      this.setState({ clickedButton: true });
+      this.setState({ clickedButton: true, showAlert: false });
     } else {
-      //pop-up
+      this.setState({ showAlert: true});
     }
   };
 
@@ -57,9 +59,17 @@ class SearchPage extends React.Component {
           handleClick={this.handleClick}
           clickedButton={this.state.clickedButton}
         />
+        {
+          this.state.showAlert ? (
+            <Alert severity="error" sx={{position: "absolute"}}>
+              You need to type before searching for a Pokemon!
+            </Alert>
+          ) : null
+        }
         {this.state.clickedButton ? (
           <CardList pokemonList={filteredPokemonList} limit={10} />
         ) : null}
+
       </div>
     );
   }

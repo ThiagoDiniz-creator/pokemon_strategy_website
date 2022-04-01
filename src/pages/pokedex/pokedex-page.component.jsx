@@ -4,6 +4,8 @@ import { getPokemonFullListName } from "../../utils/pokemonList";
 import Stats from "../../components/stats/stats.component";
 import PokedexPresentationContainer from "../../components/pokedex-presentation-container/pokedex-presentation-container.component";
 import IndividualRating from "../../components/individual-rating/individual-rating.component";
+import DescriptionBox from "../../components/description-box/description-box.component";
+import { Container, Typography } from "@mui/material";
 
 class PokedexPage extends React.Component {
   constructor(props) {

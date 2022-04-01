@@ -1,0 +1,13 @@
+.description-box-container{
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  left:0;
+  right:0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1vw;
+  background-color: orange;
+  opacity: 0.9;
+  border: 1px solid black;
+}
