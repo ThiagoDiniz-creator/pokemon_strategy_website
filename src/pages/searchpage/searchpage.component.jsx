@@ -4,6 +4,8 @@ import SearchBox from "../../components/search-box/search-box.component";
 import shortPokemonList from "../../assets/JSON/shortPokemonList.json";
 import CardList from "../../components/card-list/card-list.component";
 
+import { Typography, Container } from "@mui/material";
+
 class SearchPage extends React.Component {
   constructor(props) {
     super(props);
@@ -36,9 +38,20 @@ class SearchPage extends React.Component {
   };
 
   render() {
-    const { filteredPokemonList } = this.state;
+    const { filteredPokemonList, clickedButton } = this.state;
     return (
       <div className="searchpage-container">
+        <Typography sx={{ width: "100%", textAlign: "center" }} variant={!clickedButton ? "h2" : "h3"}>
+          Search!
+        </Typography>
+
+        {!clickedButton ? (
+          <Container>
+            <Typography sx={{ width: "100%", textAlign: "center" }}>
+              Type the name of a Pokemon, and click the Magnifier button!
+            </Typography>
+          </Container>
+        ) : null}
         <SearchBox
           handleChange={this.filterList}
           handleClick={this.handleClick}

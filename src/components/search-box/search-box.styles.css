@@ -3,7 +3,6 @@
   flex-grow: 1;
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 
 .search-box-container-active {
@@ -20,6 +19,7 @@
   font-size: 2vmax;
   padding: 0.8vmax;
   opacity: 0.7;
+  margin-top: 6vh;
 }
 
 .search-box:focus,
@@ -39,6 +39,7 @@
   height: 5vmax;
   width: 6vmax;
   margin-left: 0.5vmax;
+  margin-top: 6vh;
   background-color: #e02f2f;
   border: .1vmax solid black;
 }

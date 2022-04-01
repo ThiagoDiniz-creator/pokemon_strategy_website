@@ -22,6 +22,7 @@ const Card = ({ pokemon, handleClick, ...otherProps }) => {
         height="140"
         image={pokemon.sprite}
         alt={pokemon.name}
+        sx={{objectFit: "contain"}}
       />
 
       <CardContent>
