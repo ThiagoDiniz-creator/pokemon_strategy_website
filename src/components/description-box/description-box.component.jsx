@@ -7,7 +7,7 @@ const DescriptionBox = ({ title, subtitle, children }) => {
     <Container className="description-box-container">
       <Typography sx={{ width: "fit-content" }} component={"span"} variant="h3">
         {title.charAt(0).toUpperCase() + title.slice(1)}
-      </Typography>
+      </Typography> 
       <Typography variant="h6">{subtitle}</Typography>
       {children}
     </Container>
