@@ -1,9 +1,8 @@
 import React from "react";
-import { getAbility } from "../../utils/pokemonList";
+import { getAbility, getPokemonShortList, getPokemonShortListName, getShortList } from "../../utils/pokemonList";
 import "./ability-box.styles.css";
 
-import { Typography, Container } from "@mui/material";
-import { Button } from "@mui/material";
+import { Typography, Container, Button, Stack, Avatar } from "@mui/material";
 import DescriptionBox from "../../components/description-box/description-box.component";
 
 const AbilityBox = ({ abilities }) => {
@@ -56,6 +55,8 @@ const AbilityBox = ({ abilities }) => {
           </div>
         );
       })}
+
+
       <DescriptionBox
         title={selectedAbility.name}
         subtitle={"ID:" + selectedAbility.id}
@@ -67,7 +68,7 @@ const AbilityBox = ({ abilities }) => {
                 border: "1px solid black",
                 width: "50%",
                 margin: "0px",
-                padding: "1vw",
+                padding: "2vw",
               }}
             >
               <Typography variant="h6">Effect</Typography>
@@ -86,7 +87,7 @@ const AbilityBox = ({ abilities }) => {
                 border: "1px solid black",
                 width: "50%",
                 margin: "0px",
-                padding: "1vw",
+                padding: "2vw",
               }}
             >
               <Typography variant="h6" sx={{ width: "100%" }}>
@@ -96,18 +97,31 @@ const AbilityBox = ({ abilities }) => {
                 {selectedAbility.flavor_text_entry.flavor_text}
               </Typography>
             </Container>
-            <Typography>
-              {selectedAbility.generation.name.charAt(0).toUpperCase() +
+            <Typography sx={{ width: "100%" }}>
+              {"This ability was presented in " + selectedAbility.generation.name.charAt(0).toUpperCase() +
                 selectedAbility.generation.name.slice(1)}
             </Typography>
-            <Typography>
-              {selectedAbility.hidden
-                ? "This ability isn't hidden!"
-                : "This ability is hidden!"}
+            <Typography sx={selectedAbility.hidden ? { backgroundColor: "black" } : { backgroundColor: "green" }}>
+              {!selectedAbility.hidden
+                ? "This isn't a hidden ability!"
+                : "This is a hidden ability !"}
             </Typography>
+            <Stack direction="row" spacing={2}>
+              {selectedAbility.pokemon.map(({ pokemon }) => {
+                const pokemonData = getPokemonShortListName(pokemon.name);
+                if(pokemonData){
+                return(
+                  <Avatar sx={{width: "40px"}} src={pokemonData.sprite} alt={pokemonData.name}/>
+                )
+              }
+              })}
+            </Stack>
           </Container>
         }
       />
+
+
+
     </div>
   );
 };

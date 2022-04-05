@@ -34,20 +34,20 @@ class SearchPage extends React.Component {
       (event.key === "Enter" || event.key === undefined)
     ) {
       this.setState({ clickedButton: true, showAlert: false });
-    } else if(event.key === "Enter" || event.key === undefined){
-      this.setState({ showAlert: true});
+    } else if (event.key === "Enter" || event.key === undefined) {
+      this.setState({ showAlert: true });
     }
   };
 
   setAlertTimer = () => {
-    setTimeout(() => this.setState({showAlert: false}), 3 * 1000)
+    setTimeout(() => this.setState({ showAlert: false }), 3 * 1000)
   }
 
   render() {
     const { filteredPokemonList, clickedButton } = this.state;
     return (
       <div className="searchpage-container">
-        <Typography sx={{ width: "100%", textAlign: "center" }} variant={!clickedButton ? "h2" : "h3"}>
+        <Typography className="searchpage-title" sx={!clickedButton ? {marginTop: "3vh"} : {}} variant={!clickedButton ? "h2" : "h3"}>
           Search!
         </Typography>
 
@@ -64,8 +64,8 @@ class SearchPage extends React.Component {
           clickedButton={this.state.clickedButton}
         />
         {
-          this.state.showAlert? (
-            <Alert severity="error" sx={{position: "absolute"}}>
+          this.state.showAlert ? (
+            <Alert severity="error" sx={{ position: "absolute" }}>
               You need to type before searching for a Pokemon!
               {this.setAlertTimer()}
             </Alert>

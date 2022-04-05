@@ -34,7 +34,7 @@ class PokedexPage extends React.Component {
         <IndividualRating pokemon={pokemon} />
       </div>
     ) : (
-      <div>Não carreguei</div>
+      <div>Error: An problem occured when trying to load the page. Please try again later!</div>
     );
   }
 }

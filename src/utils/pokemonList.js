@@ -1,9 +1,15 @@
-const getShortList = () => require("../assets/JSON/shortPokemonList.json");
+const shortList = require("../assets/JSON/shortPokemonList.json");
+
+
+const getShortList = () => shortList;
 
 const getPokemonShortList = (id) =>
-  require("../assets/JSON/shortPokemonList.json").find(
+  shortList.find(
     (pokemon) => pokemon.id === id
   );
+
+const getPokemonShortListName = (name) =>
+  shortList.find((pokemon) => pokemon.name === name)
 
 const getShortListWithStats = () =>
   require("../assets/JSON/shortPokemonListWithStats.json");
@@ -34,6 +40,7 @@ module.exports = {
   getShortList,
   getPokemonShortList,
   getShortListWithStats,
+  getPokemonShortListName,
   getPokemonShortListWithStats,
   getFullList,
   getPokemonFullListName,

@@ -4,3 +4,9 @@
     height: 100%;
     flex-wrap: wrap;
 }
+
+.searchpage-title{
+    width: 100%;
+    text-align: center;
+    margin-top: 2vh; 
+}
