@@ -1,8 +1,9 @@
 import React from "react";
 import { getAbility, getPokemonShortList, getPokemonShortListName, getShortList } from "../../utils/pokemonList";
 import "./ability-box.styles.css";
+import { useState}  from "react";
 
-import { Typography, Container, Button, Stack, Avatar } from "@mui/material";
+import { Typography, Container, Button, Stack, Avatar, Box } from "@mui/material";
 import DescriptionBox from "../../components/description-box/description-box.component";
 
 const AbilityBox = ({ abilities }) => {
@@ -12,10 +13,8 @@ const AbilityBox = ({ abilities }) => {
     return newAbility;
   });
 
-  let showDescriptionBox = false;
-  let selectedAbility = fetchedAbilities[0];
-
-  console.log(selectedAbility);
+  const [showDescriptionBox, setShowDescriptionBox] = useState(true);
+  const [selectedAbility, setSelectedAbility] = useState(fetchedAbilities[0]);
 
   return (
     <div className="stats-abilities">
@@ -48,7 +47,11 @@ const AbilityBox = ({ abilities }) => {
             </Typography>
             <Button
               variant="contained"
-              onClick={() => (selectedAbility = ability)}
+              onClick={() => {
+                setSelectedAbility(ability);
+                setShowDescriptionBox(false);
+              }
+              }
             >
               Read More
             </Button>
@@ -56,8 +59,8 @@ const AbilityBox = ({ abilities }) => {
         );
       })}
 
-
       <DescriptionBox
+        isHidden={showDescriptionBox}
         title={selectedAbility.name}
         subtitle={"ID:" + selectedAbility.id}
         children={
@@ -68,7 +71,7 @@ const AbilityBox = ({ abilities }) => {
                 border: "1px solid black",
                 width: "50%",
                 margin: "0px",
-                padding: "2vw",
+                padding: "1.2vw",
               }}
             >
               <Typography variant="h6">Effect</Typography>
@@ -87,7 +90,7 @@ const AbilityBox = ({ abilities }) => {
                 border: "1px solid black",
                 width: "50%",
                 margin: "0px",
-                padding: "2vw",
+                padding: "1.2vw",
               }}
             >
               <Typography variant="h6" sx={{ width: "100%" }}>
@@ -106,21 +109,24 @@ const AbilityBox = ({ abilities }) => {
                 ? "This isn't a hidden ability!"
                 : "This is a hidden ability !"}
             </Typography>
-            <Stack direction="row" spacing={2}>
-              {selectedAbility.pokemon.map(({ pokemon }) => {
-                const pokemonData = getPokemonShortListName(pokemon.name);
-                if(pokemonData){
-                return(
-                  <Avatar sx={{width: "40px"}} src={pokemonData.sprite} alt={pokemonData.name}/>
-                )
-              }
-              })}
-            </Stack>
+            <Box sx={{border: "1px solid black", padding: "0.8vw", width: "100%"}}>
+              <Typography>
+                Pokemons that have this ability
+              </Typography>
+              <Stack direction="row" spacing={2}>
+                {selectedAbility.pokemon.map(({ pokemon }) => {
+                  const pokemonData = getPokemonShortListName(pokemon.name);
+                  if (pokemonData) {
+                    return (
+                      <Avatar sx={{ width: "40px" }} src={pokemonData.sprite} alt={pokemonData.name} />
+                    )
+                  }
+                })}
+              </Stack>
+            </Box>
           </Container>
         }
       />
-
-
 
     </div>
   );
