@@ -15,6 +15,7 @@ const AbilityBox = ({ abilities }) => {
 
   const [showDescriptionBox, setShowDescriptionBox] = useState(true);
   const [selectedAbility, setSelectedAbility] = useState(fetchedAbilities[0]);
+  const [lastClick, setLastClick] = useState(0);
 
   return (
     <div className="stats-abilities">
@@ -50,6 +51,7 @@ const AbilityBox = ({ abilities }) => {
               onClick={() => {
                 setSelectedAbility(ability);
                 setShowDescriptionBox(false);
+                setLastClick(lastClick + 1);
               }
               }
             >
@@ -61,6 +63,7 @@ const AbilityBox = ({ abilities }) => {
 
       <DescriptionBox
         isHidden={showDescriptionBox}
+        lastClick={lastClick}
         title={selectedAbility.name}
         subtitle={"ID:" + selectedAbility.id}
         children={
@@ -104,7 +107,7 @@ const AbilityBox = ({ abilities }) => {
               {"This ability was presented in " + selectedAbility.generation.name.charAt(0).toUpperCase() +
                 selectedAbility.generation.name.slice(1)}
             </Typography>
-            <Typography sx={selectedAbility.hidden ? { backgroundColor: "black" } : { backgroundColor: "green" }}>
+            <Typography sx={ selectedAbility.hidden ? { backgroundColor: "black", color: "white" } : { backgroundColor: "green" }}>
               {!selectedAbility.hidden
                 ? "This isn't a hidden ability!"
                 : "This is a hidden ability !"}
