@@ -13,9 +13,8 @@ const AbilityBox = ({ abilities }) => {
     return newAbility;
   });
 
-  const [showDescriptionBox, setShowDescriptionBox] = useState(true);
   const [selectedAbility, setSelectedAbility] = useState(fetchedAbilities[0]);
-  const [lastClick, setLastClick] = useState(0);
+
 
   return (
     <div className="stats-abilities">
@@ -49,9 +48,6 @@ const AbilityBox = ({ abilities }) => {
             <Button
               variant="contained"
               onClick={() => {
-                setSelectedAbility(ability);
-                setShowDescriptionBox(false);
-                setLastClick(lastClick + 1);
               }
               }
             >
@@ -62,8 +58,6 @@ const AbilityBox = ({ abilities }) => {
       })}
 
       <DescriptionBox
-        isHidden={showDescriptionBox}
-        lastClick={lastClick}
         title={selectedAbility.name}
         subtitle={"ID:" + selectedAbility.id}
         children={

@@ -1,26 +1,18 @@
 import { Container, Typography, Button } from "@mui/material";
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./description-box.styles.css";
+import { connect } from "react-redux";
+import { addPopup, changePopup } from "../../redux/pop-up/pop-up.actions";
 
 const DescriptionBox = ({
   title,
   subtitle,
   children,
-  isHidden: isHiddenProps,
-  lastClick
+  popupTitle,
 }) => {
-  const [isHidden, setHiddenState] = useState(isHiddenProps);
-  const [oldLastClick, setOldLastClick] = useState(lastClick);
-
-  useEffect(() => {
-    console.log(oldLastClick, " -- ", lastClick, " -- ", isHidden, " -- ", isHiddenProps);
-
-    if(oldLastClick < lastClick){
-      setHiddenState(isHiddenProps)
-      setOldLastClick(lastClick);
-    }
-  }, [lastClick]);
+  const { popups } = mapStateToProps();  
+  const popup = popups.find((p) => p.name === popupTitle);
+  const isHidden = popup.visible;
 
   return (
     <Container
@@ -41,9 +33,6 @@ const DescriptionBox = ({
 
         <Button
           variant="contained"
-          onClick={() => {
-            setHiddenState(true);
-          }}
         >
           Close
         </Button>
@@ -55,4 +44,13 @@ const DescriptionBox = ({
   );
 };
 
-export default DescriptionBox;
+const mapStateToProps = ({popup}) => ({
+  popup
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  addPopup: (popup) => dispatch(addPopup(popup)),
+  changePopup: (popup) => dispatch(changePopup(popup))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DescriptionBox);

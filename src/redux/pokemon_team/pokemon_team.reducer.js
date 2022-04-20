@@ -29,10 +29,8 @@ export const pokemonTeamReducer = (state = INITIAL_STATE, action) => {
             if (idx === index) {
               return false;
             }
-            return true;
-          } else {
-            return true;
           }
+          return true;
         }),
       };
 
