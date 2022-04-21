@@ -9,14 +9,16 @@ const DescriptionBox = ({
   subtitle,
   children,
   popupTitle,
+  popup: popupData,
+  changePopup,
+  addPopup
 }) => {
-  const { popups } = mapStateToProps();  
-  const popup = popups.find((p) => p.name === popupTitle);
-  const isHidden = popup.visible;
+
+  const popup = popupData.popups.find(({title}) => title === popupTitle);
 
   return (
     <Container
-      sx={{ zIndex: "1", visibility: isHidden ? "hidden" : "visible" }}
+      sx={{ zIndex: "1", visibility: !popup.visible  ? "hidden" : "visible" }}
       className="description-box-container"
     >
       <Container
@@ -33,6 +35,10 @@ const DescriptionBox = ({
 
         <Button
           variant="contained"
+          onClick={() => {
+            popup.visible = !popup.visible;
+            changePopup({popup});
+          }}
         >
           Close
         </Button>

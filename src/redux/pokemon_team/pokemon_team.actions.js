@@ -1,10 +1,10 @@
 import { pokemonTeamActionTypes } from "./pokemon_team.types";
 
-export const changePokemon = (newPokemon, oldPokemonId) => ({
+export const changePokemon = (pokemon, randomIdentifier) => ({
   type: pokemonTeamActionTypes.CHANGE_POKEMON,
   payload: {
-    newPokemon,
-    selectId: oldPokemonId,
+    pokemon,
+    randomIdentifier,
   },
 });
 

@@ -1,20 +1,35 @@
 import React from "react";
-import { getAbility, getPokemonShortList, getPokemonShortListName, getShortList } from "../../utils/pokemonList";
+import { getAbility, getPokemonShortListName } from "../../utils/pokemonList";
 import "./ability-box.styles.css";
-import { useState}  from "react";
-
+import { useState } from "react";
+import { POPUP_PATTERN } from "../../redux/pop-up/pop-up.reducer";
+import { connect } from "react-redux";
 import { Typography, Container, Button, Stack, Avatar, Box } from "@mui/material";
 import DescriptionBox from "../../components/description-box/description-box.component";
+import { addPopup as addPopupExternal, changePopup as changePopupExternal } from "../../redux/pop-up/pop-up.actions";
 
-const AbilityBox = ({ abilities }) => {
+const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
   const fetchedAbilities = abilities.map((element) => {
     const newAbility = getAbility(element.ability.name);
     newAbility.hidden = element.is_hidden;
     return newAbility;
   });
 
-  const [selectedAbility, setSelectedAbility] = useState(fetchedAbilities[0]);
+  const POPUP_TITLE = "ability-box-popup";
 
+  const [isPopupAdded, setIsPopupAdded] = useState(false);
+
+  if (!isPopupAdded) {
+    const popup = {...POPUP_PATTERN};
+    popup.title = POPUP_TITLE;
+    popup.visible = false;
+    popup.data = {};
+    setIsPopupAdded(true);
+    addPopup({popup});
+  }
+
+  const popup = popupData.popups.find(({title}) => title === POPUP_TITLE);
+  const [selectedAbility, setSelectedAbility] = useState(fetchedAbilities[0]);
 
   return (
     <div className="stats-abilities">
@@ -48,6 +63,9 @@ const AbilityBox = ({ abilities }) => {
             <Button
               variant="contained"
               onClick={() => {
+                setSelectedAbility(ability);
+                popup.visible = true;
+                changePopup({popup});
               }
               }
             >
@@ -60,6 +78,7 @@ const AbilityBox = ({ abilities }) => {
       <DescriptionBox
         title={selectedAbility.name}
         subtitle={"ID:" + selectedAbility.id}
+        popupTitle={POPUP_TITLE}
         children={
           <Container sx={{ display: "flex", justifyContent: "flex-start" }}>
             <Container
@@ -101,12 +120,12 @@ const AbilityBox = ({ abilities }) => {
               {"This ability was presented in " + selectedAbility.generation.name.charAt(0).toUpperCase() +
                 selectedAbility.generation.name.slice(1)}
             </Typography>
-            <Typography sx={ selectedAbility.hidden ? { backgroundColor: "black", color: "white" } : { backgroundColor: "green" }}>
+            <Typography sx={selectedAbility.hidden ? { backgroundColor: "black", color: "white" } : { backgroundColor: "green" }}>
               {!selectedAbility.hidden
                 ? "This isn't a hidden ability!"
                 : "This is a hidden ability !"}
             </Typography>
-            <Box sx={{border: "1px solid black", padding: "0.8vw", width: "100%"}}>
+            <Box sx={{ border: "1px solid black", padding: "0.8vw", width: "100%" }}>
               <Typography>
                 Pokemons that have this ability
               </Typography>
@@ -115,7 +134,7 @@ const AbilityBox = ({ abilities }) => {
                   const pokemonData = getPokemonShortListName(pokemon.name);
                   if (pokemonData) {
                     return (
-                      <Avatar sx={{ width: "40px" }} src={pokemonData.sprite} alt={pokemonData.name} />
+                      <Avatar sx={{ width: "40px" }} src={pokemonData.sprite} alt={pokemonData.name} key={pokemonData.name + "avatar"} />
                     )
                   }
                 })}
@@ -129,4 +148,14 @@ const AbilityBox = ({ abilities }) => {
   );
 };
 
-export default AbilityBox;
+
+const mapStateToProps = ({ popup }) => ({
+  popup
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addPopup: (popup) => dispatch(addPopupExternal(popup)),
+  changePopup: (popup) => dispatch(changePopupExternal(popup))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AbilityBox);

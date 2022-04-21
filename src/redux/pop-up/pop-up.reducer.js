@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     popups: [],
 }
 // This is the pattern of a popup, of these values the only one that can't change is the title.
-const POPUP_PATTERN = {
+export const POPUP_PATTERN = {
     title: "",
     visible: false,
     data: {},
@@ -16,7 +16,6 @@ export const popupReducer = (state = INITIAL_STATE, action) => {
             const { popup: addPopup } = action.payload;
             const { title: addTitle, data: addData, visible: addVisible } = addPopup;
             if (addTitle !== "" && addTitle && addData && addVisible !== undefined) {
-
                 return {
                     numberOfPopups: state.numberOfPopups + 1,
                     popups: [...state.popups, addPopup]
@@ -36,9 +35,9 @@ export const popupReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state
             }
-        default: 
-            return{
+        default:
+            return {
                 ...state
-            }        
+            }
     }
 }
