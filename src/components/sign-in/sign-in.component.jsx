@@ -33,8 +33,8 @@ class SignIn extends React.Component {
     signInWithEmailAndPassword(auth, email, password)
       ? alert("Succesfully logged in")
       : alert(
-          "Sorry, the email and password don't match with any register in our database"
-        );
+        "Sorry, the email and password don't match with any register in our database"
+      );
   };
 
   handleChange = (event) => {
@@ -42,6 +42,7 @@ class SignIn extends React.Component {
 
     this.setState({ [name]: value });
   };
+
 
   render() {
     return (

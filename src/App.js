@@ -39,18 +39,18 @@ function App({ currentUser, resetCurrentUser }) {
           },
           currentUser === null
             ? {
-                url: "login",
-                content: "SIGN-IN",
-                handleClick: () => null,
-              }
+              url: "login",
+              content: "SIGN-IN",
+              handleClick: () => null,
+            }
             : {
-                url: "/",
-                content: "SIGN-OUT",
-                handleClick: () => {
-                  resetCurrentUser();
-                  auth.signOut();
-                },
+              url: "/",
+              content: "SIGN-OUT",
+              handleClick: () => {
+                resetCurrentUser();
+                auth.signOut();
               },
+            },
         ]}
         additionalComponent={[<CartIcon />]}
       />

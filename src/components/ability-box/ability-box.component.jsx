@@ -20,15 +20,15 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
   const [isPopupAdded, setIsPopupAdded] = useState(false);
 
   if (!isPopupAdded) {
-    const popup = {...POPUP_PATTERN};
+    const popup = { ...POPUP_PATTERN };
     popup.title = POPUP_TITLE;
     popup.visible = false;
     popup.data = {};
     setIsPopupAdded(true);
-    addPopup({popup});
+    addPopup({ popup });
   }
 
-  const popup = popupData.popups.find(({title}) => title === POPUP_TITLE);
+  const popup = popupData.popups.find(({ title }) => title === POPUP_TITLE);
   const [selectedAbility, setSelectedAbility] = useState(fetchedAbilities[0]);
 
   return (
@@ -65,7 +65,7 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
               onClick={() => {
                 setSelectedAbility(ability);
                 popup.visible = true;
-                changePopup({popup});
+                changePopup({ popup });
               }
               }
             >
