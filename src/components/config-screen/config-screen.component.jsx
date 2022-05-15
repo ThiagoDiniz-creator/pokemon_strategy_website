@@ -1,37 +1,29 @@
-import React, { useState } from "react";
-import { Container, Typography, Slider, Box, Input } from "@mui/material";
+import React, { useState, useEffect } from "react";
+import { Container, Typography, Box, Input, TextField, Button } from "@mui/material";
 import { connect } from "react-redux";
 import { changePopup as changePopupExternal } from "../../redux/pop-up/pop-up.actions";
 import { calculateStat, STATS_PATTERN } from "../../utils/stats";
 import { changePokemon as changePokemonExternal } from "../../redux/pokemon_team/pokemon_team.actions";
 
-const ConfigScreen = ({ pokemon, changePokemon }) => {
+const ConfigScreen = ({ pokemon }) => {
   const [stats, setStats] = useState(STATS_PATTERN);
+  const [firstLoad, setFirstLoad] = useState(true);
 
-  const handleSlider = (event, isEffort, statname) => {
-    const modifiedStatIndex = stats.findIndex(
-      ({ stat: Istat }) => Istat.name === statname
-    );
-
-    if (modifiedStatIndex !== -1) {
-      stats[modifiedStatIndex][isEffort ? "effort" : "iv"] = event.target.value;
-      recalculateStat(stats[modifiedStatIndex].stat.name);
-    }
-  };
-
-  const handleInputLoaded = (fullStat, statname, idx) => {
-    if (stats[idx].first_loading) {
-      stats[idx] = fullStat;
-      recalculateStat(statname);
-      stats[idx].first_loading = false;
-    }
-  };
+  const handleTextField = (event, idx, isEffort) => {
+    if(event.target.value > -1 && event.target.value < 65){
+    stats[idx][isEffort ? "effort" : "iv"] = event.target.value;
+  }else{
+  event.target.value = 0;
+}
+  }
 
   const recalculateStat = (statName) => {
-    const statIndex = stats.findIndex(({ stat }) => stat.name === statName);
+    const statIndex = pokemon.stats.findIndex(
+      ({ stat }) => stat.name === statName
+    );
 
     if (statIndex !== -1) {
-      const stat = stats[statIndex];
+      const stat = pokemon.stats[statIndex];
       let { base_stat: baseStat, effort: ev } = stat;
       let iv, level;
       let isHealth = statName === "hp";
@@ -57,82 +49,71 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
     }
   };
 
-  if (pokemon === undefined || pokemon.stats === undefined) {
+  useEffect(() => {
+    setFirstLoad(true);
+  }, [pokemon]);
+
+  if (pokemon && firstLoad) {
+    setStats(pokemon.stats);
+    setFirstLoad(false);
+
+    pokemon.stats.forEach((iStat) => {
+      if (iStat.value === undefined) {
+        recalculateStat(iStat.stat.name);
+      }
+    });
+  }
+
+  if (
+    pokemon === undefined ||
+    pokemon.stats === undefined ||
+    stats === undefined
+  ) {
     return <h1>Nenhum Pokémon foi selecionado</h1>;
   } else {
     return (
       <Container>
-        <Container>
-          <Typography>Level</Typography>
-          <Slider
-            defaultValue={5}
-            min={1}
-            max={100}
-            valueLabelDisplay="on"
-            size="small"
-          />
-        </Container>
-
-        <Container>
-          <Typography
-            sx={{
-              margin: "auto",
-            }}
-          >
-            Stats and effort points
-          </Typography>
-          {pokemon.stats.map((fullStat, idx) => {
-            const { stat, base_stat: baseStat, effort } = fullStat;
+        <Box sx={{display: "flex", justifyContent: "space-around"}}>
+          <img src={pokemon.sprite}/>
+          <Box>
+            <Typography sx={{width: "fit-content"}} variant="h6">Level</Typography>
+            <TextField defaultValue={pokemon.level} inputProps={{inputMode: "numeric"}} onMouseLeave={(event) => {
+              if(event.target.value > 0 && event.target.value < 101){
+                pokemon.level = event.target.value;
+              }else{
+                event.target.value = 5;
+              }
+            }}/>
+          </Box>
+        </Box>
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "space-around" }}>
+          {stats.map((iStat, idx) => {
+            const { base_stat: baseStat, effort, stat, value, iv } = iStat;
 
             return (
-              <Box
-                key={stat.name + pokemon.name}
-                sx={{
-                  display: "flex",
-                  justifyContent: "space-around",
-                }}
-              >
-                <Box>
-                  <Typography>{stat.name.toUpperCase()}</Typography>
-                  <Input
-                    onLoad={handleInputLoaded(fullStat, stat.name, idx)}
-                    value={!fullStat.first_loading ? stats[idx].stat.value : 0}
-                  />
+              <Box sx={{ width: "25%", display: "flex", flexWrap: "wrap", padding: "5.5px" }}>
+                <Typography variant="h6" sx={{flexGrow: "1"}}>{stat.name.toUpperCase()}</Typography>
+                <Typography variant="h6">{value}</Typography>
+                <Box sx={{margin: "4px"}}>
+                  <Typography>Effort (Between 0-64)</Typography>
+                  <TextField defaultValue={effort} inputProps={{inputMode: "numeric"}} onMouseLeave={(event) => handleTextField(event, idx, true)}/>
                 </Box>
-                <Box
-                  sx={{
-                    width: "25%",
-                  }}
-                >
-                  <Typography>Individual Value (IV)</Typography>
-                  <Slider
-                    size="small"
-                    defaultValue={1}
-                    max={64}
-                    min={1}
-                    valueLabelDisplay="on"
-                    onChange={(event) => handleSlider(event, false, stat.name)}
-                  />
-                </Box>
-                <Box
-                  sx={{
-                    width: "25%",
-                  }}
-                >
-                  <Typography>Effort Value (IV)</Typography>
-                  <Slider
-                    size="small"
-                    defaultValue={1}
-                    max={64}
-                    min={1}
-                    valueLabelDisplay="on"
-                    onChange={(event) => handleSlider(event, true, stat.name)}
-                  />
+                <Box sx={{margin: "4px"}}>
+                  <Typography> Individual Value (Between 0-64)</Typography>
+                  <TextField defaultValue={iv} inputProps={{inputMode: "numeric"}} onMouseLeave={(event) => handleTextField(event, idx, true)}/>
                 </Box>
               </Box>
             );
           })}
-        </Container>
+        </Box>
+        <Box sx={{display: "flex", justifyContent: "center"}}>
+        <Button variant="outlined" sx={{margin: "10px"}}>
+          Recalculate
+        </Button>
+        <Button variant="outlined" sx={{margin: "10px"}}>
+          Save
+        </Button>
+        </Box>
       </Container>
     );
   }
