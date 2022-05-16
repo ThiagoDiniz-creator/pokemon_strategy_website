@@ -16,7 +16,7 @@ class SearchBoxWithAutoComplete extends React.Component {
     };
   }
 
-  handleInput = async (e) => {
+  handleInput =  (e) => {
     let { currentSuggestions, autoComplete, userInput } = this.state;
     const { value } = e.target;
 
@@ -44,10 +44,17 @@ class SearchBoxWithAutoComplete extends React.Component {
     );
   };
 
+  handleKeyDown = (event) => {
+    if(event.key === "Escape"){
+      this.setState({autoComplete: false})
+    }
+    console.log(event.key === "Escape");
+  }
+
   render() {
     const { currentSuggestions, autoComplete } = this.state;
     return (
-      <div className="search-box-autocomplete">
+      <div className="search-box-autocomplete" onKeyDown={(event) => this.handleKeyDown(event)}>
         <div className="search-box-autocomplete__title">
           Search for the desired Pokemon
           </div> 
