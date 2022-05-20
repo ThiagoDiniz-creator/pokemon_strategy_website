@@ -1,7 +1,30 @@
 .matchup-page {
   display: flex;
-  flex-grow: 1;
-  width: 100%;
-  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
+  height: 88vh;
+}
+
+.matchup-page__left {
+  flex-grow: 1;
+  height: 100%;
+  background-color: aqua;
+  border-right: 1px solid black;
+}
+
+.matchup-page__right {
+  flex-grow: 1;
+  height: 100%;
+  background-color: yellow;
+  border-left: 1px black solid;
+}
+
+.matchup-page__center{
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }

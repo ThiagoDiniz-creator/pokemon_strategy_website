@@ -1,7 +1,7 @@
 export const calculateStat = (baseValue, ev, iv, level, isHealth) =>
   isHealth
-    ? Math.floor(((2 * baseValue + iv + ev) * level) / 100 + level + 10)
-    : Math.floor(Math.floor(((2 * baseValue + iv + ev) * level) / 100 + 5));
+    ? Math.floor((((2 * parseFloat(baseValue) + parseFloat(iv) + parseFloat(ev)) * parseFloat(level)) / 100) + parseFloat(level) + 10)
+    : Math.floor(Math.floor(((2 * parseFloat(baseValue) + parseFloat(iv) + parseFloat(ev)) * parseFloat(level)) / 100 + 5));
 
 export const STATS_PATTERN = [
   {

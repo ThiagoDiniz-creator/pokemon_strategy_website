@@ -1,31 +1,28 @@
-import {pokemonTeamActionTypes} from "./pokemon_team.types";
-import listUtil from "../../utils/pokemonList";
+import { pokemonTeamActionTypes } from "./pokemon_team.types";
+import listUtil, { generateRandomIdentifier } from "../../utils/pokemonList";
+
 const INITIAL_STATE = {
   numberOfPokemons: 0,
-  pokemons: []
+  pokemons: [],
 };
 export const pokemonTeamReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case pokemonTeamActionTypes.ADD_POKEMON:
-      const randomIdentifier = Math.floor(Math.random() * (Math.pow(10, 18)));
       if (state.numberOfPokemons <= 5) {
-        let newPokemon = listUtil.getPokemonFullList(action.payload.id);
-        newPokemon.randomIdentifier = randomIdentifier;
+        const newPokemon = listUtil.getPokemonFullList(action.payload.id);
+        newPokemon.randomIdentifier = generateRandomIdentifier();
         return {
           ...state,
-          pokemons: [
-            ...state.pokemons,
-            newPokemon
-          ],
-          numberOfPokemons: state.numberOfPokemons + 1
+          pokemons: [...state.pokemons, newPokemon],
+          numberOfPokemons: state.numberOfPokemons + 1,
         };
       } else {
         return {
-          ...state
+          ...state,
         };
       }
     case pokemonTeamActionTypes.REMOVE_POKEMON:
-      const {index, id} = action.payload;
+      const { index, id } = action.payload;
       return {
         ...state,
         numberOfPokemons: state.numberOfPokemons - 1,
@@ -36,24 +33,26 @@ export const pokemonTeamReducer = (state = INITIAL_STATE, action) => {
             }
           }
           return true;
-        })
+        }),
       };
 
     case pokemonTeamActionTypes.CHANGE_POKEMON:
-      const position = state.pokemons.findIndex(({randomIdentifier}) => randomIdentifier === action.payload.randomIdentifier);
+      const position = state.pokemons.findIndex(
+        ({ randomIdentifier }) =>
+          randomIdentifier === action.payload.randomIdentifier
+      );
       if (position !== -1) {
         state.pokemons[position] = action.payload.pokemon;
-
       }
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case pokemonTeamActionTypes.CLEAN_POKEMON_TEAM:
       return {
         ...state,
         pokemons: [],
-        numberOfPokemons: 0
+        numberOfPokemons: 0,
       };
 
     default:

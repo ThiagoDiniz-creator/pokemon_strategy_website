@@ -1,40 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import CustomButton from "../../components/custom-button/custom-button.component";
+import SearchBoxWithAutocompleteComponent from "../../components/search-box-with-autocomplete/search-box-with-autocomplete.component";
 import "./matchup-page.styles.css";
 
-const MatchupPage = () => (
-  <div className="matchup-page">
+const MatchupPage = () => {
+  const [started, setStarted] = useState(false);
+
+  return !started ? (
+    <div className="matchup-page">
       <CustomButton
-        innerText={"Your team"}
-        style={{
-          backgroundColor: "#ff6b35",
-          color: "white",
-          fontSize: "150%",
-          width: "25%",
-        }}
-        onClick={() => alert("Your team")}
-      />
-      <CustomButton
-        innerText={"Both teams"}
+        innerText={"Start"}
         style={{
           backgroundColor: "#FFFFFF",
           fontSize: "150%",
           width: "25%",
         }}
-        onClick={() => alert("Oppostion's team")}
+        onClick={() => setStarted(true)}
       />
-
-      <CustomButton
-        innerText={"Opposition team"}
-        style={{
-          backgroundColor: "#758bfd",
-          color: "white",
-          fontSize: "150%",
-          width: "25%",
-        }}
-        onClick={() => alert("Opposition's team")}
-      />
-  </div>
-);
+    </div>
+  ) : (
+    <div className="matchup-page">
+      <div className="matchup-page__left">
+      </div>
+      <div className="matchup-page__center">
+        <SearchBoxWithAutocompleteComponent />
+        </div>
+      <div className="matchup-page__right">
+        
+      </div>
+    </div>
+  );
+};
 
 export default MatchupPage;

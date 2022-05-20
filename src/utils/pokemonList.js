@@ -1,15 +1,12 @@
 const shortList = require("../assets/JSON/shortPokemonList.json");
 
-
 const getShortList = () => shortList;
 
 const getPokemonShortList = (id) =>
-  shortList.find(
-    (pokemon) => pokemon.id === id
-  );
+  shortList.find((pokemon) => pokemon.id === id);
 
 const getPokemonShortListName = (name) =>
-  shortList.find((pokemon) => pokemon.name === name)
+  shortList.find((pokemon) => pokemon.name === name);
 
 const getShortListWithStats = () =>
   require("../assets/JSON/shortPokemonListWithStats.json");
@@ -33,8 +30,11 @@ const getPokemonFullListName = (name) =>
 
 const getAbility = (name) =>
   require("../assets/JSON/abilities.json").find(
-    (ability) => ability.name == name
+    (ability) => ability.name === name
   );
+
+const generateRandomIdentifier = () =>
+  Math.floor(Math.random() * Math.pow(6, 9) + Date.now());
 
 module.exports = {
   getShortList,
@@ -46,4 +46,5 @@ module.exports = {
   getPokemonFullListName,
   getPokemonFullList,
   getAbility,
+  generateRandomIdentifier
 };

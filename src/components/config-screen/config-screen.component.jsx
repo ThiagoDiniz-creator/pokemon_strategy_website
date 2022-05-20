@@ -60,48 +60,62 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
     if (event.target.value > -1 && event.target.value < 65) {
       stats[idx][isEffort ? "effort" : "iv"] = parseInt(event.target.value);
     } else {
-      event.target.value = 0;
+      event.target.value = 1;
     }
   };
 
   const recalculateStat = (statName) => {
-    const statIndex = pokemon.stats.findIndex(
-      ({ stat }) => stat.name === statName
-    );
+    if (pokemon.stats !== undefined) {
+      if (pokemon.stats.length > 0) {
+        const statIndex = pokemon.stats.findIndex(
+          ({ stat }) => stat.name === statName
+        );
 
-    if (statIndex !== -1) {
-      const stat = pokemon.stats[statIndex];
-      let { base_stat: baseStat, effort: ev } = stat;
-      let iv, level;
-      let isHealth = statName === "hp";
+        if (statIndex !== -1) {
+          const stat = pokemon.stats[statIndex];
+          let { base_stat: baseStat, effort: ev } = stat;
+          let iv, level;
+          let isHealth = statName === "hp";
 
-      if (stat.iv === undefined) {
-        stat.iv = 1;
-        iv = 1;
-      } else {
-        iv = stat.iv;
-      }
+          if (stat.iv === undefined) {
+            stat.iv = 1;
+            iv = 1;
+          } else {
+            iv = stat.iv;
+          }
 
-      if (pokemon.level === undefined) {
-        if (pokemon.temporary_level === undefined) {
-          pokemon.temporary_level = 5;
-          level = 5;
-        } else {
-          level = pokemon.temporary_level;
+          if (pokemon.level === undefined) {
+            if (pokemon.temporary_level === undefined) {
+              pokemon.temporary_level = 5;
+              level = 5;
+            } else {
+              level = pokemon.temporary_level;
+            }
+          } else {
+            level = pokemon.level;
+          }
+
+          stats[statIndex].effort = ev;
+          stats[statIndex].iv = iv;
+          stats[statIndex].value = calculateStat(
+            baseStat,
+            ev,
+            iv,
+            level,
+            isHealth
+          );
+          if (isHealth) {
+            console.log(calculateStat(baseStat, ev, iv, level, isHealth));
+          }
+          setStatVariable(stats[statIndex].stat.name, stats[statIndex].value);
         }
-      } else {
-        level = pokemon.level;
       }
-
-      stats[statIndex].effort = ev;
-      stats[statIndex].iv = iv;
-      stats[statIndex].value = calculateStat(baseStat, ev, iv, level, isHealth);
-      setStatVariable(stats[statIndex].stat.name, stats[statIndex].value);
     }
   };
 
   useEffect(() => {
     setFirstLoad(true);
+    console.log("a");
   }, [pokemon]);
 
   if (pokemon && firstLoad && pokemon.stats) {
@@ -151,7 +165,7 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
           }}
         >
           {stats.map((iStat, idx) => {
-            const { base_stat: baseStat, effort, stat, value, iv } = iStat;
+            const { base_stat: baseStat, effort, stat, iv } = iStat;
 
             return (
               <Box
@@ -174,7 +188,7 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
                   <TextField
                     defaultValue={effort}
                     inputProps={{ inputMode: "numeric" }}
-                    onMouseLeave={(event) => handleTextField(event, idx, true)}
+                    onChange={(event) => handleTextField(event, idx, true)}
                   />
                 </Box>
                 <Box sx={{ margin: "4px" }}>
@@ -182,7 +196,7 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
                   <TextField
                     defaultValue={iv}
                     inputProps={{ inputMode: "numeric" }}
-                    onMouseLeave={(event) => handleTextField(event, idx, true)}
+                    onChange={(event) => handleTextField(event, idx, true)}
                   />
                 </Box>
               </Box>

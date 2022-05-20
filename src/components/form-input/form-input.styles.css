@@ -1,17 +1,17 @@
-.group{
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    vertical-align: middle;
-    margin: 3% 0%;
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  vertical-align: middle;
+  margin: 3% 0%;
 }
-.form-input{
-    width: 100%;
-    height: 4vh;
+.form-input {
+  width: 100%;
+  height: 4vh;
 }
 
-.form-input__label{
-    width: 50%;
-    font-size: 150%;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+.form-input__label {
+  width: 50%;
+  font-size: 150%;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }

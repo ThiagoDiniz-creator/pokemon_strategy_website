@@ -13,13 +13,12 @@ import {
   addPopup as addPopupExternal,
   changePopup as changePopupExternal,
 } from "../../redux/pop-up/pop-up.actions.js";
-import { POPUP_PATTERN } from "../../redux/pop-up/pop-up.reducer.js";
 import ConfigScreenComponent from "../config-screen/config-screen.component";
+import { Typography } from "@mui/material";
 
 const Stand = ({
   pokemonTeam,
   removePokemonStand,
-  changePokemon,
   changePopup,
   addPopup,
   popup: popupData,
@@ -38,18 +37,15 @@ const Stand = ({
 
   if (!wasPopupAdded) {
     const popup = {
-      ...POPUP_PATTERN,
+      title: POPUP_TITLE,
+      visible: false,
+      data: {},
     };
-    popup.title = POPUP_TITLE;
-    popup.visible = false;
-    popup.data = {};
+
     addPopup({ popup });
     setWasPopupAdded(true);
     setPopup(popup);
   }
-
-  
-
 
   return (
     <div className="stand">
@@ -57,11 +53,7 @@ const Stand = ({
         {pokemonTeam.pokemons.length > 0 ? (
           pokemonTeam.pokemons.map((pokemon, idx) => {
             return (
-              <li
-                key={Math.random()}
-                id={Math.random()}
-                className="stand-list__element"
-              >
+              <li key={idx + "_KEY"} className="stand-list__element">
                 <img src={pokemon.sprite} alt={pokemon.name} />
                 <div>{pokemon.name}</div>
                 <div className="stand-list__button-holder">
@@ -82,7 +74,7 @@ const Stand = ({
             );
           })
         ) : (
-          <h1>No pokemon selected yet</h1>
+          <Typography variant="h3">No pokemon selected yet</Typography>
         )}
       </ul>
       <DescriptionBox
@@ -96,7 +88,7 @@ const Stand = ({
         }
         children={
           selectedPokemon !== false ? (
-            <ConfigScreenComponent pokemon={selectedPokemon}/>
+            <ConfigScreenComponent pokemon={selectedPokemon} />
           ) : null
         }
       />
