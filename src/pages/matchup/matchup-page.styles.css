@@ -1,30 +1,19 @@
 .matchup-page {
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex-grow: 1;
-  height: 88vh;
+  width: 100%;
 }
 
 .matchup-page__left {
   flex-grow: 1;
-  height: 100%;
-  background-color: aqua;
-  border-right: 1px solid black;
+  background-color: rgb(202, 255, 255);
+  display: flex;
+  justify-content: center;
 }
 
 .matchup-page__right {
   flex-grow: 1;
-  height: 100%;
-  background-color: yellow;
-  border-left: 1px black solid;
-}
-
-.matchup-page__center{
-  flex-grow: 1;
-  height: 100%;
+  background-color: rgb(201, 255, 166);
   display: flex;
   justify-content: center;
 }

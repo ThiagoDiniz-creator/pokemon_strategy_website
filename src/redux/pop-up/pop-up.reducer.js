@@ -26,7 +26,7 @@ export const popupReducer = (state = INITIAL_STATE, action) => {
             }
         case PopupActionTypes.CHANGE_POPUP:
             const { popup: changePopup } = action.payload;
-            const { title: changeTitle, data: changeData, visible: changeVisible } = changePopup;
+            const { title: changeTitle} = changePopup;
             const popupIndex = state.popups.findIndex((popup) => popup.title === changeTitle);
 
             if (popupIndex !== -1) {

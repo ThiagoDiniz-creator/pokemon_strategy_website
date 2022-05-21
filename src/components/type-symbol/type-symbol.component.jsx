@@ -57,6 +57,7 @@ const TypeSymbol = ({ typeName }) => {
       <img
         src={typeSymbolImage}
         className="type-symbol__image"
+        alt={typeName + "symbol"}
         key={"type-symbol__image" + typeName}
       />
       <span

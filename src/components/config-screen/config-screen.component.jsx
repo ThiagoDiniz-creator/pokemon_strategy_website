@@ -3,13 +3,12 @@ import {
   Container,
   Typography,
   Box,
-  Input,
   TextField,
   Button,
 } from "@mui/material";
 import { connect } from "react-redux";
 import { changePopup as changePopupExternal } from "../../redux/pop-up/pop-up.actions";
-import { calculateStat, STATS_PATTERN } from "../../utils/stats";
+import { STATS_PATTERN, calculateStat } from "../../utils/stats";
 import { changePokemon as changePokemonExternal } from "../../redux/pokemon_team/pokemon_team.actions";
 
 const ConfigScreen = ({ pokemon, changePokemon }) => {
@@ -21,6 +20,53 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
   const [spAttack, setSpAttack] = useState(0);
   const [spDefense, setSpDefense] = useState(0);
   const [speed, setSpeed] = useState(0);
+
+  const recalculateStat = (statName) => {
+    if (pokemon.stats !== undefined) { 
+      if (pokemon.stats.length > 0) {
+        const statIndex = pokemon.stats.findIndex(
+          ({ stat }) => stat.name === statName
+        );
+  
+        if (statIndex !== -1) {
+          const stat = pokemon.stats[statIndex];
+          let { base_stat: baseStat, effort: ev } = stat;
+          let iv, level;
+          let isHealth = statName === "hp";
+  
+          if (stat.iv === undefined) {
+            stat.iv = 1;
+            iv = 1;
+          } else {
+            iv = stat.iv;
+          }
+  
+          if (pokemon.level === undefined) {
+            if (pokemon.temporary_level === undefined) {
+              pokemon.temporary_level = 5;
+              level = 5;
+            } else {
+              level = pokemon.temporary_level;
+            }
+          } else {
+            level = pokemon.level;
+          }
+  
+          stats[statIndex].effort = ev;
+          stats[statIndex].iv = iv;
+          stats[statIndex].value = calculateStat(
+            baseStat,
+            ev,
+            iv,
+            level,
+            isHealth
+          );
+          
+          setStatVariable(stats[statIndex].stat.name, stats[statIndex].value);
+        }
+      }
+    }
+  };
 
   const returnVariable = (statname) => {
     switch (statname) {
@@ -36,6 +82,8 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
         return hp;
       case "speed":
         return speed;
+        default:
+          break;
     }
   };
 
@@ -53,6 +101,8 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
         return setHp(value);
       case "speed":
         return setSpeed(value);
+      default:
+        break;
     }
   };
 
@@ -64,54 +114,7 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
     }
   };
 
-  const recalculateStat = (statName) => {
-    if (pokemon.stats !== undefined) {
-      if (pokemon.stats.length > 0) {
-        const statIndex = pokemon.stats.findIndex(
-          ({ stat }) => stat.name === statName
-        );
 
-        if (statIndex !== -1) {
-          const stat = pokemon.stats[statIndex];
-          let { base_stat: baseStat, effort: ev } = stat;
-          let iv, level;
-          let isHealth = statName === "hp";
-
-          if (stat.iv === undefined) {
-            stat.iv = 1;
-            iv = 1;
-          } else {
-            iv = stat.iv;
-          }
-
-          if (pokemon.level === undefined) {
-            if (pokemon.temporary_level === undefined) {
-              pokemon.temporary_level = 5;
-              level = 5;
-            } else {
-              level = pokemon.temporary_level;
-            }
-          } else {
-            level = pokemon.level;
-          }
-
-          stats[statIndex].effort = ev;
-          stats[statIndex].iv = iv;
-          stats[statIndex].value = calculateStat(
-            baseStat,
-            ev,
-            iv,
-            level,
-            isHealth
-          );
-          if (isHealth) {
-            console.log(calculateStat(baseStat, ev, iv, level, isHealth));
-          }
-          setStatVariable(stats[statIndex].stat.name, stats[statIndex].value);
-        }
-      }
-    }
-  };
 
   useEffect(() => {
     setFirstLoad(true);
@@ -139,7 +142,7 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
     return (
       <Container>
         <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-          <img src={pokemon.sprite} />
+          <img src={pokemon.sprite} alt={pokemon.name} />
           <Box>
             <Typography sx={{ width: "fit-content" }} variant="h6">
               Level
@@ -165,7 +168,7 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
           }}
         >
           {stats.map((iStat, idx) => {
-            const { base_stat: baseStat, effort, stat, iv } = iStat;
+            const { effort, stat, iv } = iStat;
 
             return (
               <Box

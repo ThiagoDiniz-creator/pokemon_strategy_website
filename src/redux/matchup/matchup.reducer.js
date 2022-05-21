@@ -99,6 +99,8 @@ export const matchupReducer = (state = INITIAL_STATE, action) => {
         opponentPokemon: undefined,
       };
     default:
-      break;
+      return {
+        ...state,
+      };
   }
 };

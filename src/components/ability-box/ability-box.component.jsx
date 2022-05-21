@@ -161,6 +161,9 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
                       />
                     );
                   }
+                  return (<h1>
+                    ERROR
+                  </h1>)
                 })}
               </Stack>
             </Box>

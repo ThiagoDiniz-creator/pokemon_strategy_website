@@ -1,5 +1,5 @@
 import { Container, Typography, Button } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./description-box.styles.css";
 import { connect } from "react-redux";
 import { addPopup, changePopup } from "../../redux/pop-up/pop-up.actions";

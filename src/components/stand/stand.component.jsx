@@ -74,7 +74,7 @@ const Stand = ({
             );
           })
         ) : (
-          <Typography variant="h3">No pokemon selected yet</Typography>
+          undefined
         )}
       </ul>
       <DescriptionBox
