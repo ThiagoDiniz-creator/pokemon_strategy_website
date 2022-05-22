@@ -18,6 +18,7 @@ class SearchBoxAutocompleteDisplay extends React.Component {
       userInput: "",
       autoComplete: false,
       side: props.side,
+      title: props.title,
       addYourPokemon: (id) => props.addYourPokemon(id),
       addOpponentPokemon: (id) => props.addOpponentPokemon(id),
     };
@@ -59,14 +60,14 @@ class SearchBoxAutocompleteDisplay extends React.Component {
 
   render() {
 
-    const { currentSuggestions, autoComplete } = this.state;
+    const { currentSuggestions, autoComplete, title } = this.state;
     return (
       <div
         className="search-box-autocomplete"
         onKeyDown={(event) => this.handleKeyDown(event)}
       >
         <div className="search-box-autocomplete__title">
-          Search for the desired Pokemon
+          {title}
         </div>
         <input
           className="search-box-autocomplete__input"

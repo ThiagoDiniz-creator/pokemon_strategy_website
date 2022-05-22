@@ -46,26 +46,30 @@ const getTypeImage = (typeName) => {
   }
 };
 
-const TypeSymbol = ({ typeName }) => {
+const TypeSymbol = ({ typeName, showName, imageHeight, typeSymbolContainerHeight }) => {
   const typeSymbolImage = `${getTypeImage(typeName)}`;
 
   return (
     <div
       className="type-symbol-container"
       key={"type-symbol-container" + typeName}
+      style={typeSymbolContainerHeight ? {height: typeSymbolContainerHeight} : undefined}
     >
       <img
         src={typeSymbolImage}
+        style={imageHeight ? {height: imageHeight} : undefined}
         className="type-symbol__image"
         alt={typeName + "symbol"}
         key={"type-symbol__image" + typeName}
       />
-      <span
-        className="type-symbol__caption"
-        key={"type-symbol__caption" + typeName}
-      >
-        {typeName.charAt(0).toUpperCase() + typeName.slice(1)}
-      </span>
+      {showName ? (
+        <span
+          className="type-symbol__caption"
+          key={"type-symbol__caption" + typeName}
+        >
+          {typeName.charAt(0).toUpperCase() + typeName.slice(1)}
+        </span>
+      ) : undefined}
     </div>
   );
 };
