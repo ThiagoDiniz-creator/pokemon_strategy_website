@@ -1,19 +1,20 @@
-.matchup-page {
+.matchup-page{
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex-wrap: nowrap;
+  height: 90vh;
 }
+
 
 .matchup-page__left {
   flex-grow: 1;
-  background-color: rgb(202, 255, 255);
   display: flex;
   justify-content: center;
+  width: 50%;
 }
 
 .matchup-page__right {
   flex-grow: 1;
-  background-color: rgb(201, 255, 166);
   display: flex;
   justify-content: center;
+  width: 50%;
 }

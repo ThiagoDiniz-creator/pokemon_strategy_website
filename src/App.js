@@ -13,10 +13,11 @@ import CartIcon from "./components/cart-icon/cart-icon.component";
 import Team from "./pages/team/team.component";
 
 import { Container } from "@mui/material";
+import AccountPage from "./components/account-page/account.component";
 
 function App({ currentUser, resetCurrentUser }) {
   return (
-    <Container maxWidth="xxl" disableGutters>
+    <Container sx={{minHeight: "100vh"}} maxWidth="xxl" disableGutters>
       <NavBar
         brandText={"POKEMON STRATEGY"}
         brandUrl="/"
@@ -61,7 +62,7 @@ function App({ currentUser, resetCurrentUser }) {
         <Route path="/team" component={Team} exact />
         <Route path="/pokemon/:pokemonName" component={PokedexPage} exact />
         <Route path="/login" component={SignUpSignIn} exact />
-        <Route path="" component={() => <div>There is nothing here!</div>} />
+        <Route path="/account" component={AccountPage} />
       </Switch>
     </Container>
   );

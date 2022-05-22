@@ -2,3 +2,7 @@
   margin: 0;
   text-decoration: none;
 }
+
+#root{
+  min-height: 100vh;
+}

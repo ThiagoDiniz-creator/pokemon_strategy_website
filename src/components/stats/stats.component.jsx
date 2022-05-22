@@ -11,14 +11,32 @@ const Stats = ({ pokemon }) => {
       <AbilityBox abilities={pokemon.abilities} />
 
       <div className="stats__list-container">
-      <Typography variant="h4">Stats</Typography>
+        <Typography variant="h4">Stats</Typography>
 
         <Grid container spacing={0}>
           {pokemon.stats.map((stat) => {
             return (
-              <Grid className="stats__list-item" xs={6} style={{flexWrap: "wrap"}}item key={"stats__list-item" + stat.base_stat + stat.stat.name}>
-                <Typography sx={{width: "100%", textAlign: "center", display: "flex", justifyContent: "center"}} paragraph>{stat.stat.name.toUpperCase()}</Typography>
-                <Typography sx={{height: "fit-content"}}>{stat.base_stat}</Typography>
+              <Grid
+                className="stats__list-item"
+                xs={6}
+                style={{ flexWrap: "wrap" }}
+                item
+                key={"stats__list-item" + stat.base_stat + stat.stat.name}
+              >
+                <Typography
+                  sx={{
+                    width: "100%",
+                    textAlign: "center",
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                  paragraph
+                >
+                  {stat.stat.name.toUpperCase()}
+                </Typography>
+                <Typography sx={{ height: "fit-content" }}>
+                  {stat.base_stat}
+                </Typography>
               </Grid>
             );
           })}

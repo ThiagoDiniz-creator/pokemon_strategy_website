@@ -2,16 +2,18 @@
   width: 70%;
   flex-wrap: wrap;
   justify-content: space-around;
-  border: 1px solid black;
+  border: 1px solid #b4b4b4;
+  border-radius: 30px;
 }
 
 .stats-abilities__item {
   width: 40%;
   padding: 0.6vw;
-  border: 1px black solid;
+  border: 1px #b4b4b4 solid;
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 0.4vw;
+  border-radius: 30px;
 }
 
 

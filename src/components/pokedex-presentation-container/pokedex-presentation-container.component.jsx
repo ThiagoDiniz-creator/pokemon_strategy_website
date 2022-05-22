@@ -3,6 +3,7 @@ import TypeSymbol from "../type-symbol/type-symbol.component";
 import "./pokedex-presentation-container.styles.css";
 
 import Typography from "@mui/material/Typography";
+import { Container } from "@mui/material";
 
 const PokedexPresentationContainer = ({ pokemon }) => {
   pokemon.name = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
@@ -17,12 +18,12 @@ const PokedexPresentationContainer = ({ pokemon }) => {
         />
       </div>
       <Typography gutterBottom  variant="h4" className="pokedex-presentation-name">{pokemon.name}</Typography>
-      <Typography>{"ID: " + pokemon.id}</Typography>
+      <Typography variant="h5">{"ID: " + pokemon.id}</Typography>
 
       <div className="pokedex-presentation-type">
         <Typography className="pokedex-presentation-type__title" variant="h5">Types</Typography>
         {pokemon.types.map(({ type: { name } }) => (
-          <TypeSymbol key={"type-symbol" + name} typeName={name} />
+          <TypeSymbol key={"type-symbol" + name} typeName={name} showName/>
         ))}
       </div>
       <div className="pokedex-presentation-data">

@@ -16,6 +16,7 @@ import {
   addPopup as addPopupExternal,
   changePopup as changePopupExternal,
 } from "../../redux/pop-up/pop-up.actions";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
   const fetchedAbilities = abilities.map((element) => {
@@ -84,7 +85,7 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
       ))}
 
       <DescriptionBox
-        title={selectedAbility.name}
+        title={selectedAbility.name.charAt(0).toUpperCase() + selectedAbility.name.slice(1)}
         subtitle={"ID:" + selectedAbility.id}
         popupTitle={POPUP_TITLE}
         children={
@@ -153,17 +154,14 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
                   const pokemonData = getPokemonShortListName(pokemon.name);
                   if (pokemonData) {
                     return (
-                      <Avatar
-                        sx={{ width: "40px" }}
-                        src={pokemonData.sprite}
-                        alt={pokemonData.name}
-                        key={pokemonData.name + "avatar"}
-                      />
+                        <Avatar
+                          sx={{ width: "40px" }}
+                          src={pokemonData.sprite}
+                          alt={pokemonData.name}
+                          key={pokemonData.name + "avatar"}
+                        />
                     );
                   }
-                  return (<h1>
-                    ERROR
-                  </h1>)
                 })}
               </Stack>
             </Box>

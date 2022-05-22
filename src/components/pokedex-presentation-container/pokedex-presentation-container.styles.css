@@ -14,9 +14,11 @@
 }
 
 .pokedex-presentation-image {
-  width: 12vw;
+  width: 14vw;
   height: fit-content;
-  background-color: white;
+  background-color: #e6e6e6;
+  border-radius: 30px;
+  border: 1.5px black solid;
 }
 
 .pokedex-presentation-name {
@@ -27,13 +29,14 @@
   margin-bottom: 0.3vmax;
   width: 80%;
   padding: 0.4vmax;
-
-  border: black 1px solid;
+  border: #b4b4b4 1px solid;
+  border-radius: 30px;
   flex-wrap: wrap;
 }
 
 .pokedex-presentation-data {
-  border: black 1px solid;
+  border: #b4b4b4 1px solid;
+  border-radius: 30px;
   padding: 0.4vmax;
   flex-wrap: wrap;
   width: 80%;
@@ -43,9 +46,7 @@
   margin-top: 1.5vmax;
   margin-right: .5vmax;
   margin-bottom: 0.5vmax;
-
   width: 40%;
-
 }
 
 .pokedex-presentation-data__weight {

@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Container } from "@mui/material";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
@@ -68,6 +68,7 @@ const PokemonDisplay = ({
         <Container>
           <SearchBoxAutocompleteDisplay
             side={pokemonDisplayTypes.YOUR_POKEMON}
+            title={"Find your Pokemon"}
           />{" "}
         </Container>
       );
@@ -76,6 +77,7 @@ const PokemonDisplay = ({
         <Container>
           <SearchBoxAutocompleteDisplay
             side={pokemonDisplayTypes.OPPONENT_POKEMON}
+            title={"Find your opponent's Pokemon"}
           />
         </Container>
       );
@@ -83,20 +85,23 @@ const PokemonDisplay = ({
   } else {
     if (side === pokemonDisplayTypes.YOUR_POKEMON) {
       return (
-        <InteractivePokemonCard
-          pokemon={matchup.yourPokemon}
-          changePokemon={(pokemon) => changeYourPokemon(pokemon)}
-          removePokemon={() => removeYourPokemon()}
-
-        />
+        <Container sx={{display: "flex", justifyContent: "center", borderRight: "1px black solid"}}>
+          <InteractivePokemonCard
+            pokemon={matchup.yourPokemon}
+            changePokemon={(pokemon) => changeYourPokemon(pokemon)}
+            removePokemon={() => removeYourPokemon()}
+          />
+        </Container>
       );
     } else if (side === pokemonDisplayTypes.OPPONENT_POKEMON) {
       return (
-        <InteractivePokemonCard
-          pokemon={matchup.opponentPokemon}
-          changePokemon={(pokemon) => changeOpponentPokemon(pokemon)}
-          removePokemon={() => removeOpponentPokemon()}
-        />
+        <Container sx={{display: "flex", justifyContent: "center"}}>
+          <InteractivePokemonCard
+            pokemon={matchup.opponentPokemon}
+            changePokemon={(pokemon) => changeOpponentPokemon(pokemon)}
+            removePokemon={() => removeOpponentPokemon()}
+          />
+        </Container>
       );
     }
   }

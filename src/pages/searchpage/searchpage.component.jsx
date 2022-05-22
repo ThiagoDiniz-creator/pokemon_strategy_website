@@ -4,8 +4,7 @@ import SearchBox from "../../components/search-box/search-box.component";
 import shortPokemonList from "../../assets/JSON/shortPokemonList.json";
 import CardList from "../../components/card-list/card-list.component";
 
-import { Typography, Container, Alert } from "@mui/material";
-
+import { Typography, Container, Alert, Grow } from "@mui/material";
 
 class SearchPage extends React.Component {
   constructor(props) {
@@ -40,14 +39,18 @@ class SearchPage extends React.Component {
   };
 
   setAlertTimer = () => {
-    setTimeout(() => this.setState({ showAlert: false }), 3 * 1000)
-  }
+    setTimeout(() => this.setState({ showAlert: false }), 3 * 1000);
+  };
 
   render() {
     const { filteredPokemonList, clickedButton } = this.state;
     return (
       <div className="searchpage-container">
-        <Typography className="searchpage-title" sx={!clickedButton ? {marginTop: "3vh"} : {}} variant={!clickedButton ? "h2" : "h3"}>
+        <Typography
+          className="searchpage-title"
+          sx={!clickedButton ? { marginTop: "3vh" } : {}}
+          variant={!clickedButton ? "h2" : "h3"}
+        >
           Search!
         </Typography>
 
@@ -63,18 +66,16 @@ class SearchPage extends React.Component {
           handleClick={this.handleClick}
           clickedButton={this.state.clickedButton}
         />
-        {
-          this.state.showAlert ? (
-            <Alert severity="error" sx={{ position: "absolute" }}>
-              You need to type before searching for a Pokemon!
-              {this.setAlertTimer()}
-            </Alert>
-          ) : null
-        }
-        {this.state.clickedButton ? (
-          <CardList pokemonList={filteredPokemonList} limit={10} />
+        {this.state.showAlert ? (
+          <Alert severity="error" sx={{ position: "absolute" }}>
+            You need to type before searching for a Pokemon!
+            {this.setAlertTimer()}
+          </Alert>
         ) : null}
+        {this.state.clickedButton ? (
 
+            <CardList pokemonList={filteredPokemonList} limit={10} />
+        ) : null}
       </div>
     );
   }
