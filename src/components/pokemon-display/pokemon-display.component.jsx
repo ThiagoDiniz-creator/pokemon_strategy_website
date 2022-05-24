@@ -2,18 +2,6 @@ import { Container } from "@mui/material";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import {
-  changeYourPokemon as changeYourPokemonExternal,
-  removeYourPokemon as removeYourPokemonExternal,
-  changeOpponentPokemon as changeOpponentPokemonExternal,
-  removeOpponentPokemon as removeOpponentPokemonExternal,
-} from "../../redux/matchup/matchup.actions";
-import { pokemonDisplayTypes } from "./pokemon-display.types";
-import SearchBoxAutocompleteDisplay from "../search-box-autocomplete-display/search-box-autocomplete-display.component";
-import { useEffect } from "react";
-import InteractivePokemonCard from "../interactive-pokemon-card/interactive-pokemon-card.component";
-
-/*
-import {
   addYourPokemon as addYourPokemonExternal,
   changeYourPokemon as changeYourPokemonExternal,
   removeYourPokemon as removeYourPokemonExternal,
@@ -22,18 +10,15 @@ import {
   removeOpponentPokemon as removeOpponentPokemonExternal,
 } from "../../redux/matchup/matchup.actions";
 
-
-
-  side,
-  matchup,
-  changeYourPokemon,
-  removeYourPokemon,
-  changeOpponentPokemon,
-  removeOpponentPokemon,
-*/
+import { pokemonDisplayTypes } from "./pokemon-display.types";
+import { useEffect } from "react";
+import InteractivePokemonCard from "../interactive-pokemon-card/interactive-pokemon-card.component";
+import AdvancedPokemonSelector from "../advanced-pokemon-selector/advanced-pokemon-selector.component";
 
 // The side is a property that will determine which pokemon of the matchup this display will render.
 const PokemonDisplay = ({
+  addYourPokemon,
+  addOpponentPokemon,
   side,
   matchup,
   changeYourPokemon,
@@ -65,19 +50,31 @@ const PokemonDisplay = ({
   if (pokemon === undefined) {
     if (side === pokemonDisplayTypes.YOUR_POKEMON) {
       return (
-        <Container>
-          <SearchBoxAutocompleteDisplay
-            side={pokemonDisplayTypes.YOUR_POKEMON}
-            title={"Find your Pokemon"}
-          />{" "}
+        <Container
+          sx={{
+            borderRight: "1px black solid",
+            display: "flex",
+          }}
+        >
+          <AdvancedPokemonSelector
+            addPokemon={addYourPokemon}
+            title={"Choose your Pokemon!"}
+            limit={1}
+          />
         </Container>
       );
     } else if (side === pokemonDisplayTypes.OPPONENT_POKEMON) {
       return (
-        <Container>
-          <SearchBoxAutocompleteDisplay
-            side={pokemonDisplayTypes.OPPONENT_POKEMON}
-            title={"Find your opponent's Pokemon"}
+        <Container
+          sx={{
+            borderRight: "1px black solid",
+            display: "flex",
+          }}
+        >
+          <AdvancedPokemonSelector
+            addPokemon={addOpponentPokemon}
+            title={"Choose your opponent's Pokemon!"}
+            limit={1}
           />
         </Container>
       );
@@ -85,7 +82,13 @@ const PokemonDisplay = ({
   } else {
     if (side === pokemonDisplayTypes.YOUR_POKEMON) {
       return (
-        <Container sx={{display: "flex", justifyContent: "center", borderRight: "1px black solid"}}>
+        <Container
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            borderRight: "1px black solid",
+          }}
+        >
           <InteractivePokemonCard
             pokemon={matchup.yourPokemon}
             changePokemon={(pokemon) => changeYourPokemon(pokemon)}
@@ -95,7 +98,7 @@ const PokemonDisplay = ({
       );
     } else if (side === pokemonDisplayTypes.OPPONENT_POKEMON) {
       return (
-        <Container sx={{display: "flex", justifyContent: "center"}}>
+        <Container sx={{ display: "flex", justifyContent: "center" }}>
           <InteractivePokemonCard
             pokemon={matchup.opponentPokemon}
             changePokemon={(pokemon) => changeOpponentPokemon(pokemon)}
@@ -108,6 +111,9 @@ const PokemonDisplay = ({
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  addYourPokemon: (pokemon) => dispatch(addYourPokemonExternal(pokemon)),
+  addOpponentPokemon: (pokemon) =>
+    dispatch(addOpponentPokemonExternal(pokemon)),
   changeYourPokemon: (pokemon) => dispatch(changeYourPokemonExternal(pokemon)),
   removeYourPokemon: () => dispatch(removeYourPokemonExternal()),
   changeOpponentPokemon: (pokemon) =>

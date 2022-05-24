@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Container,
-  Typography,
-  Box,
-  TextField,
-  Button,
-} from "@mui/material";
+import { Container, Typography, Box, TextField, Button } from "@mui/material";
 import { connect } from "react-redux";
 import { changePopup as changePopupExternal } from "../../redux/pop-up/pop-up.actions";
 import { STATS_PATTERN, calculateStat } from "../../utils/stats";
@@ -22,25 +16,25 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
   const [speed, setSpeed] = useState(0);
 
   const recalculateStat = (statName) => {
-    if (pokemon.stats !== undefined) { 
+    if (pokemon.stats !== undefined) {
       if (pokemon.stats.length > 0) {
         const statIndex = pokemon.stats.findIndex(
           ({ stat }) => stat.name === statName
         );
-  
+
         if (statIndex !== -1) {
           const stat = pokemon.stats[statIndex];
           let { base_stat: baseStat, effort: ev } = stat;
           let iv, level;
           let isHealth = statName === "hp";
-  
+
           if (stat.iv === undefined) {
             stat.iv = 1;
             iv = 1;
           } else {
             iv = stat.iv;
           }
-  
+
           if (pokemon.level === undefined) {
             if (pokemon.temporary_level === undefined) {
               pokemon.temporary_level = 5;
@@ -51,7 +45,7 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
           } else {
             level = pokemon.level;
           }
-  
+
           stats[statIndex].effort = ev;
           stats[statIndex].iv = iv;
           stats[statIndex].value = calculateStat(
@@ -61,7 +55,7 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
             level,
             isHealth
           );
-          
+
           setStatVariable(stats[statIndex].stat.name, stats[statIndex].value);
         }
       }
@@ -82,8 +76,8 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
         return hp;
       case "speed":
         return speed;
-        default:
-          break;
+      default:
+        break;
     }
   };
 
@@ -113,8 +107,6 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
       event.target.value = 1;
     }
   };
-
-
 
   useEffect(() => {
     setFirstLoad(true);
@@ -150,7 +142,7 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
             <TextField
               defaultValue={pokemon.temporary_level}
               inputProps={{ inputMode: "numeric" }}
-              onMouseLeave={(event) => {
+              onChange={(event) => {
                 if (event.target.value > 0 && event.target.value < 101) {
                   pokemon.temporary_level = event.target.value;
                 } else {
@@ -165,6 +157,8 @@ const ConfigScreen = ({ pokemon, changePokemon }) => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-around",
+            border: "1px black solid",
+            borderRadius: "40px",
           }}
         >
           {stats.map((iStat, idx) => {

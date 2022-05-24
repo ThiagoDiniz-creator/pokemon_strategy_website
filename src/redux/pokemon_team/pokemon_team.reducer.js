@@ -9,7 +9,12 @@ export const pokemonTeamReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case pokemonTeamActionTypes.ADD_POKEMON:
       if (state.numberOfPokemons <= 5) {
-        const newPokemon = listUtil.getPokemonFullList(action.payload.id);
+        let newPokemon;
+        if(typeof action.payload === Object){
+          newPokemon = listUtil.getPokemonFullList(action.payload.id);
+        }else{
+          newPokemon = listUtil.getPokemonFullList(action.payload);
+        }
         newPokemon.randomIdentifier = generateRandomIdentifier();
         return {
           ...state,

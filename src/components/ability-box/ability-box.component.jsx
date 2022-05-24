@@ -16,7 +16,6 @@ import {
   addPopup as addPopupExternal,
   changePopup as changePopupExternal,
 } from "../../redux/pop-up/pop-up.actions";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
   const fetchedAbilities = abilities.map((element) => {
@@ -28,6 +27,7 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
   const POPUP_TITLE = "ability-box-popup";
 
   const [isPopupAdded, setIsPopupAdded] = useState(false);
+  const [showStack, setShowStack] = useState(false);
 
   if (!isPopupAdded) {
     const popup = {
@@ -72,12 +72,14 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
             {ability.flavor_text_entry.flavor_text}
           </Typography>
           <Button
+            sx={{ height: "34px" }}
             variant="contained"
             onClick={() => {
               setSelectedAbility(ability);
               popup.visible = true;
               changePopup({ popup });
             }}
+            size="small"
           >
             Read More
           </Button>
@@ -85,7 +87,10 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
       ))}
 
       <DescriptionBox
-        title={selectedAbility.name.charAt(0).toUpperCase() + selectedAbility.name.slice(1)}
+        title={
+          selectedAbility.name.charAt(0).toUpperCase() +
+          selectedAbility.name.slice(1)
+        }
         subtitle={"ID:" + selectedAbility.id}
         popupTitle={POPUP_TITLE}
         children={
@@ -96,7 +101,7 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
                 border: "1px solid black",
                 width: "50%",
                 margin: "0px",
-                padding: "1.2vw",
+                padding: "0.7vw",
               }}
             >
               <Typography variant="h6">Effect</Typography>
@@ -125,45 +130,66 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
                 {selectedAbility.flavor_text_entry.flavor_text}
               </Typography>
             </Container>
-            <Typography sx={{ width: "100%" }}>
-              {"This ability was presented in " +
-                selectedAbility.generation.name.charAt(0).toUpperCase() +
-                selectedAbility.generation.name.slice(1)}
-            </Typography>
-            <Typography
-              sx={
-                selectedAbility.hidden
-                  ? { backgroundColor: "black", color: "white" }
-                  : { backgroundColor: "green" }
-              }
-            >
-              {!selectedAbility.hidden
-                ? "This isn't a hidden ability!"
-                : "This is a hidden ability !"}
-            </Typography>
+            <Container disableGutters sx={{display: "flex", wrap: "nowrap"}}>
+              <Typography sx={{border: "1px solid black", width: "50%", padding: "10px"}}>
+                {"Generation: This ability was presented in " +
+                  selectedAbility.generation.name.charAt(0).toUpperCase() +
+                  selectedAbility.generation.name.slice(1)}
+              </Typography>
+              <Typography
+                sx={
+                  selectedAbility.hidden
+                    ? { backgroundColor: "black", color: "white", border: "1px solid black",  padding: "10px" }
+                    : { backgroundColor: "green" , border: "1px solid black",  padding: "10px "}
+                }
+              >
+                {!selectedAbility.hidden
+                  ? "This isn't a hidden ability!"
+                  : "This is a hidden ability !"}
+              </Typography>
+            </Container>
             <Box
               sx={{
                 border: "1px solid black",
                 padding: "0.8vw",
                 width: "100%",
+                display: "flex",
               }}
             >
-              <Typography>Pokemons that have this ability</Typography>
-              <Stack direction="row" spacing={2}>
-                {selectedAbility.pokemon.map(({ pokemon }) => {
-                  const pokemonData = getPokemonShortListName(pokemon.name);
-                  if (pokemonData) {
-                    return (
+              <Box
+                sx={{
+                  width: "100%",
+                  justifyContent: "flex-start",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Typography sx={{ height: "fit-content", width: "100%" }}>
+                  Pokemons that have this ability
+                </Typography>
+                <Button
+                  onClick={() => setShowStack(!showStack)}
+                  variant="contained"
+                >
+                  {showStack ? "Hide pokemons" : "Show pokemons"}
+                </Button>
+              </Box>
+              {showStack ? (
+                <Stack direction="row" spacing={2}>
+                  {selectedAbility.pokemon.map(({ pokemon }) => {
+                    const pokemonData = getPokemonShortListName(pokemon.name);
+                    if (pokemonData) {
+                      return (
                         <Avatar
                           sx={{ width: "40px" }}
                           src={pokemonData.sprite}
                           alt={pokemonData.name}
                           key={pokemonData.name + "avatar"}
                         />
-                    );
-                  }
-                })}
-              </Stack>
+                      );
+                    }
+                  })}
+                </Stack>
+              ) : undefined}
             </Box>
           </Container>
         }

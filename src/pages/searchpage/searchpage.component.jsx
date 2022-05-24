@@ -57,7 +57,7 @@ class SearchPage extends React.Component {
         {!clickedButton ? (
           <Container>
             <Typography sx={{ width: "100%", textAlign: "center" }}>
-              Type the name of a Pokemon, and click the Magnifier button!
+              Type the name of a Pokemon, and click the search button!
             </Typography>
           </Container>
         ) : null}
@@ -73,8 +73,7 @@ class SearchPage extends React.Component {
           </Alert>
         ) : null}
         {this.state.clickedButton ? (
-
-            <CardList pokemonList={filteredPokemonList} limit={10} />
+          <CardList pokemonList={filteredPokemonList} limit={10} />
         ) : null}
       </div>
     );

@@ -1,7 +1,7 @@
 .stand {
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
 }
 
 .stand-list {
@@ -9,8 +9,8 @@
 }
 
 .stand-list__element {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .stand-list__element:nth-child(even) {
@@ -23,7 +23,7 @@
   color: black;
 }
 
-.stand-list__button-holder{
+.stand-list__button-holder {
   display: flex;
   justify-content: right;
   flex-grow: 1;

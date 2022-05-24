@@ -14,6 +14,7 @@ import Team from "./pages/team/team.component";
 
 import { Container } from "@mui/material";
 import AccountPage from "./components/account-page/account.component";
+import AdvancedPokemonSelector from "./components/advanced-pokemon-selector/advanced-pokemon-selector.component";
 
 function App({ currentUser, resetCurrentUser }) {
   return (

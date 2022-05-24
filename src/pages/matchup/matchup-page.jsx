@@ -3,9 +3,18 @@ import CustomButton from "../../components/custom-button/custom-button.component
 import PokemonDisplay from "../../components/pokemon-display/pokemon-display.component";
 import { pokemonDisplayTypes } from "../../components/pokemon-display/pokemon-display.types";
 import "./matchup-page.styles.css";
-import { Container, Fab, Typography } from "@mui/material";
+import { Container } from "@mui/material";
+import {
+  ButtonBar,
+  ButtonPatern,
+} from "../../components/button-bar/button-bar.component";
+import { connect } from "react-redux";
+import {
+  removeOpponentPokemon,
+  removeYourPokemon,
+} from "../../redux/matchup/matchup.actions";
 
-const MatchupPage = () => {
+const MatchupPage = ({removeAllPokemons}) => {
   const [started, setStarted] = useState(false);
 
   return !started ? (
@@ -23,7 +32,8 @@ const MatchupPage = () => {
         style={{
           backgroundColor: "#FFFFFF",
           fontSize: "150%",
-          width: "20%",
+          width: "240px",
+          height: "120px",
           margin: "auto",
         }}
         onClick={() => setStarted(true)}
@@ -34,51 +44,29 @@ const MatchupPage = () => {
       <div className="matchup-page__left">
         <PokemonDisplay side={pokemonDisplayTypes.YOUR_POKEMON} />
       </div>
-      <Container
-        sx={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          bottom: "4px",
-          marginLeft: "auto",
-          marginRight: "auto",
-          marginBottom: "auto",
-          padding: "8px",
-          display: "flex",
-          width: "fit-content",
-          backgroundColor: "#e6e6e6",
-          borderRadius: "30px"
-        }}
-      >
-        <Fab
-          color="error"
-          sx={{
-            padding: "40px",
-          }}
-          enterDe
-        >
-          <Typography variant="body3">BATTLE!</Typography>
-        </Fab>
 
-
-        <Fab
-          color="info"
-          sx={{
-            padding: "40px",
-          }}
-        >
-          <Typography variant="body3">Reset</Typography>
-        </Fab>
-
-        <Fab
-          color="success"
-          sx={{
-            padding: "40px",
-          }}
-        >
-          <Typography variant="body3">Save</Typography>
-        </Fab>
-      </Container>
+      <ButtonBar
+        buttons={[
+          <ButtonPatern
+            title={"BATTLE"}
+            color={"error"}
+            handleClick={() => console.log("BATTLE!")}
+            sx={{ padding: "40px", marginLeft: "2px" }}
+          />,
+          <ButtonPatern
+            title={"RESET"}
+            color={"info"}
+            handleClick={() => removeAllPokemons()}
+            sx={{ padding: "40px", marginLeft: "4px", marginRight: "4px" }}
+          />,
+          <ButtonPatern
+            title={"SAVE"}
+            color={"success"}
+            handleClick={() => console.log("SAVE!")}
+            sx={{ padding: "40px", marginRight: "2px" }}
+          />,
+        ]}
+      />
 
       <div className="matchup-page__right">
         <PokemonDisplay side={pokemonDisplayTypes.OPPONENT_POKEMON} />
@@ -87,4 +75,11 @@ const MatchupPage = () => {
   );
 };
 
-export default MatchupPage;
+const mapDispatchToProps = (dispatch) => ({
+  removeAllPokemons: () => {
+    dispatch(removeYourPokemon());
+    dispatch(removeOpponentPokemon());
+  },
+});
+
+export default connect(undefined, mapDispatchToProps)(MatchupPage);

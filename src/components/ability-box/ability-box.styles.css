@@ -4,11 +4,12 @@
   justify-content: space-around;
   border: 1px solid #b4b4b4;
   border-radius: 30px;
+  padding: 10px;
 }
 
 .stats-abilities__item {
   width: 40%;
-  padding: 0.6vw;
+  padding: 10px;
   border: 1px #b4b4b4 solid;
   flex-wrap: wrap;
   justify-content: center;
