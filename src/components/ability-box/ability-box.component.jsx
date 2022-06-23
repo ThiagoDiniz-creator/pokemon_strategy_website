@@ -16,6 +16,7 @@ import {
   addPopup as addPopupExternal,
   changePopup as changePopupExternal,
 } from "../../redux/pop-up/pop-up.actions";
+import AbilityPopupComponent from "../ability-popup/ability-popup.component";
 
 const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
   const fetchedAbilities = abilities.map((element) => {
@@ -30,14 +31,20 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
   const [showStack, setShowStack] = useState(false);
 
   if (!isPopupAdded) {
-    const popup = {
-      title: POPUP_TITLE,
-      visible: false,
-      data: {},
-    };
+    if (
+      popupData.popups.find(({ title }) => title === POPUP_TITLE) !== undefined
+    ) {
+      setIsPopupAdded(true);
+    } else {
+      const popup = {
+        title: POPUP_TITLE,
+        visible: false,
+        data: {},
+      };
 
-    setIsPopupAdded(true);
-    addPopup({ popup });
+      setIsPopupAdded(true);
+      addPopup({ popup });
+    }
   }
 
   const popup = popupData.popups.find(({ title }) => title === POPUP_TITLE);
@@ -85,6 +92,29 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
           </Button>
         </div>
       ))}
+
+      <AbilityPopupComponent
+        popupName={POPUP_TITLE}
+        selectedAbility={selectedAbility}
+        showStack={showStack}
+        setShowStack={setShowStack}
+      />
+    </div>
+  );
+};
+
+const mapStateToProps = ({ popup }) => ({
+  popup,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addPopup: (popup) => dispatch(addPopupExternal(popup)),
+  changePopup: (popup) => dispatch(changePopupExternal(popup)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AbilityBox);
+
+/*
 
       <DescriptionBox
         title={
@@ -193,18 +223,5 @@ const AbilityBox = ({ abilities, addPopup, changePopup, popup: popupData }) => {
             </Box>
           </Container>
         }
-      />
-    </div>
-  );
-};
-
-const mapStateToProps = ({ popup }) => ({
-  popup,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  addPopup: (popup) => dispatch(addPopupExternal(popup)),
-  changePopup: (popup) => dispatch(changePopupExternal(popup)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(AbilityBox);
+/>
+*/

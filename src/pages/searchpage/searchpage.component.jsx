@@ -46,6 +46,7 @@ class SearchPage extends React.Component {
     const { filteredPokemonList, clickedButton } = this.state;
     return (
       <div className="searchpage-container">
+        <div className="searchpage-upperside-container">
         <Typography
           className="searchpage-title"
           sx={!clickedButton ? { marginTop: "3vh" } : {}}
@@ -55,17 +56,16 @@ class SearchPage extends React.Component {
         </Typography>
 
         {!clickedButton ? (
-          <Container>
             <Typography sx={{ width: "100%", textAlign: "center" }}>
               Type the name of a Pokemon, and click the search button!
             </Typography>
-          </Container>
         ) : null}
         <SearchBox
           handleChange={this.filterList}
           handleClick={this.handleClick}
           clickedButton={this.state.clickedButton}
         />
+        </div>
         {this.state.showAlert ? (
           <Alert severity="error" sx={{ position: "absolute" }}>
             You need to type before searching for a Pokemon!

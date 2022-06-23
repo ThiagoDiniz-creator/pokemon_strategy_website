@@ -1,5 +1,5 @@
 .type-symbol-container {
-  height: 10vmax;
+  height: 8vmax;
   flex-wrap: nowrap;
   flex-direction: column;
 }

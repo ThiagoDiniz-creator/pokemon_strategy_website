@@ -11,6 +11,9 @@
 .team-container__stand-container{
   display: flex;
   width: 50%;
+  height: 90vh;
+  align-items: center;
+  border-right: 1px solid black;
 }
 
 .team-container__advanced-pokemon-selector-container{

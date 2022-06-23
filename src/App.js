@@ -14,7 +14,8 @@ import Team from "./pages/team/team.component";
 
 import { Container } from "@mui/material";
 import AccountPage from "./components/account-page/account.component";
-import AdvancedPokemonSelector from "./components/advanced-pokemon-selector/advanced-pokemon-selector.component";
+import CartDropdown from "./components/cart/cart-dropdown.component";
+import Footer from "./components/footer/footer.component";
 
 function App({ currentUser, resetCurrentUser }) {
   return (
@@ -54,7 +55,7 @@ function App({ currentUser, resetCurrentUser }) {
               },
             },
         ]}
-        additionalComponent={[<CartIcon />]}
+        additionalComponent={[<CartIcon />, <CartDropdown />]}
       />
       <Switch>
         <Route path="/" component={HomePage} exact />
@@ -65,6 +66,7 @@ function App({ currentUser, resetCurrentUser }) {
         <Route path="/login" component={SignUpSignIn} exact />
         <Route path="/account" component={AccountPage} />
       </Switch>
+      <Footer />
     </Container>
   );
 }

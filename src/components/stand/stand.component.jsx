@@ -14,7 +14,6 @@ import {
   changePopup as changePopupExternal,
 } from "../../redux/pop-up/pop-up.actions.js";
 import ConfigScreenComponent from "../config-screen/config-screen.component";
-import { Typography } from "@mui/material";
 
 const Stand = ({
   pokemonTeam,

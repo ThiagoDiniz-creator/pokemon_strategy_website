@@ -3,18 +3,18 @@
   flex-wrap: wrap;
   justify-content: space-around;
   border: 1px solid #b4b4b4;
-  border-radius: 30px;
-  padding: 10px;
+  border-radius: 20px;
+  padding: 6px;
 }
 
 .stats-abilities__item {
   width: 40%;
-  padding: 10px;
+  padding: 12px;
   border: 1px #b4b4b4 solid;
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 0.4vw;
-  border-radius: 30px;
+  border-radius: 20px;
 }
 
 

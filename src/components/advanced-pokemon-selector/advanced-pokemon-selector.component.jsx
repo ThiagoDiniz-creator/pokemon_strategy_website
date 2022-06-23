@@ -12,7 +12,10 @@ import {
 import React, { useState } from "react";
 import PlusIcon from "../plus-icon/plus-icon.component";
 import SearchBox from "../search-box/search-box.component";
-import { generateRandomIdentifier, getShortList } from "../../utils/pokemonList";
+import {
+  generateRandomIdentifier,
+  getShortList,
+} from "../../utils/pokemonList";
 import CardList from "../card-list/card-list.component";
 import { useEffect } from "react";
 import MinusIcon from "../minus-icon/minus-icon.component";
@@ -72,7 +75,10 @@ const AdvancedPokemonSelector = ({ addPokemon, limit, pokemonList, title }) => {
             handleClick={(clickedPokemon) => {
               if (selectedPokemons.length < limit) {
                 clickedPokemon.randomIdentifier = generateRandomIdentifier();
-                setSelectedPokemons([...selectedPokemons, {...clickedPokemon}]);
+                setSelectedPokemons([
+                  ...selectedPokemons,
+                  { ...clickedPokemon },
+                ]);
               }
             }}
           />
@@ -96,8 +102,11 @@ const AdvancedPokemonSelector = ({ addPokemon, limit, pokemonList, title }) => {
             {selectedPokemons.map((pokemonIterator, idx) => (
               <Avatar
                 onClick={() => {
-                  const index = selectedPokemons.findIndex((p) => p.randomIdentifier === pokemonIterator.randomIdentifier);
-                  if(index !== -1){
+                  const index = selectedPokemons.findIndex(
+                    (p) =>
+                      p.randomIdentifier === pokemonIterator.randomIdentifier
+                  );
+                  if (index !== -1) {
                     const arrayRef = [...selectedPokemons];
                     arrayRef.splice(index, 1);
                     setSelectedPokemons(arrayRef);
@@ -147,7 +156,7 @@ const AdvancedPokemonSelector = ({ addPokemon, limit, pokemonList, title }) => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-                }}
+        }}
       >
         <PlusIcon
           style={{ width: "50px", color: "green", margin: "auto" }}
