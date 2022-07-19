@@ -1,50 +1,23 @@
 .navbar__item {
+  color: white;
+
+  /* Font */
+  font-size: 30px;
+  text-decoration: none;
+  line-height: 1.5;
+
+  /* Flex */
   display: flex;
-  width: 30%;
-  margin-top: 0.2vmax;
-  padding: 0.05vmax;
+  flex: 1 1;
   justify-content: center;
   align-items: center;
-  color: inherit;
-  font-size: 1.5vmax;
 }
 
-.navbar__item:nth-child(1),
-.navbar__item:nth-child(2),
-.navbar__item:nth-child(3),
-.navbar__item:nth-child(4) {
-  color: rgb(255, 255, 255);
+.navbar__item:hover {
+  background-color: #666;
 }
 
-.navbar__item:nth-child(1):hover {
-  color: white;
-  background: #ff6b35;
-}
-
-.navbar__item:nth-child(2):hover {
-  color: white;
-  background: #758bfd;
-}
-
-.navbar__item:nth-child(3):hover {
-  color: #000000;
-  background: rgb(255, 255, 255);
-}
-
-.navbar__item:nth-child(4):hover {
-  color: #ffffff;
-  background: #ff6b35;
-}
-
-.navbar__item:nth-child(5) {
-  color: rgb(255, 255, 255);
-}
-
-.navbar__item:nth-child(5):hover {
-  color: #000000;
-  background: #fbff1f;
-}
-
-.navbar__item:nth-child(6) {
-  width: 15%;
+.navbar__item:first-child:hover {
+  background-color: #323232;
+  cursor: default;
 }

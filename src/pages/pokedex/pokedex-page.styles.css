@@ -1,12 +1,5 @@
 .pokedex-container {
   background-color: black;
-  display: flex;
-  flex-grow: 1;
-  margin-top: 1vh;
-}
-
-.pokedex-rating-container {
-  width: 33.33%;
-  height: inherit;
-  background-color: lightseagreen;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }

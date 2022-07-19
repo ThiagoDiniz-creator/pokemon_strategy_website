@@ -12,14 +12,13 @@ import SignUpSignIn from "./pages/sign-up-sign-in/sign-up-sign-in.component";
 import CartIcon from "./components/cart-icon/cart-icon.component";
 import Team from "./pages/team/team.component";
 
-import { Container } from "@mui/material";
 import AccountPage from "./components/account-page/account.component";
 import CartDropdown from "./components/cart/cart-dropdown.component";
 import Footer from "./components/footer/footer.component";
 
 function App({ currentUser, resetCurrentUser }) {
   return (
-    <Container sx={{minHeight: "100vh"}} maxWidth="xxl" disableGutters>
+    <>
       <NavBar
         brandText={"POKEMON STRATEGY"}
         brandUrl="/"
@@ -42,20 +41,19 @@ function App({ currentUser, resetCurrentUser }) {
           },
           currentUser === null
             ? {
-              url: "login",
-              content: "SIGN-IN",
-              handleClick: () => null,
-            }
+                url: "login",
+                content: "SIGN-IN",
+                handleClick: () => null,
+              }
             : {
-              url: "/",
-              content: "SIGN-OUT",
-              handleClick: () => {
-                resetCurrentUser();
-                auth.signOut();
+                url: "/",
+                content: "SIGN-OUT",
+                handleClick: () => {
+                  resetCurrentUser();
+                  auth.signOut();
+                },
               },
-            },
         ]}
-        additionalComponent={[<CartIcon />, <CartDropdown />]}
       />
       <Switch>
         <Route path="/" component={HomePage} exact />
@@ -67,7 +65,7 @@ function App({ currentUser, resetCurrentUser }) {
         <Route path="/account" component={AccountPage} />
       </Switch>
       <Footer />
-    </Container>
+    </>
   );
 }
 

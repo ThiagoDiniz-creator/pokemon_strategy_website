@@ -1,7 +1,7 @@
 import React from "react";
 import "./individual-rating.styles.css";
 
-import { Button, Container, TextField, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const getInformation = (pokemon) => {
   console.log("here");
@@ -10,35 +10,32 @@ const getInformation = (pokemon) => {
 
 const IndividualRating = ({ pokemon }) => {
   return (
-    <Container
-      sx={{
-        display: "flex",
-        flexWrap: "wrap",
-        width: "33.33333%",
-      }}
-      className="individual-rating-container"
-    >
-      <Typography sx={{ width: "100%", textAlign: "center", marginTop: "1vw" }} variant="h3">
+    <div className="individual-rating-container">
+      <Typography
+        sx={{ width: "100%", textAlign: "center", marginTop: "1vw" }}
+        variant="h3"
+      >
         {" "}
         Individual Rating{" "}
       </Typography>
       <form className="individual-rating__form">
-          <Typography style={{ width: "100%" }}>Pokemon name</Typography>
-          <TextField type={"text"} readOnly={true} value={pokemon.name} />
-          <Container
-            sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}
-            disableGutters
-          >
-            <Button
-              variant="contained"
-              onClick={() => getInformation(pokemon)}
-              type="button"
-            >
-              Get
-            </Button>
-        </Container>
+        <Typography>Pokemon name</Typography>
+        <input
+          className="individual-rating__form-input"
+          type="text"
+          readOnly={true}
+          value={pokemon.name}
+        />
+
+        <button
+          className="individual-rating__form-button"
+          onClick={() => getInformation(pokemon)}
+          type="button"
+        >
+          Get
+        </button>
       </form>
-    </Container>
+    </div>
   );
 };
 

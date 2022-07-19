@@ -1,10 +1,5 @@
 .stats-container {
   background-color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  width: 33.3333%;
 }
 
 .stats-container * {
@@ -14,11 +9,8 @@
 }
 
 .stats__list {
-  flex-wrap: wrap;
-  width: 80%;
-  justify-content: center;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 .stats__list-item {
   justify-content: center;

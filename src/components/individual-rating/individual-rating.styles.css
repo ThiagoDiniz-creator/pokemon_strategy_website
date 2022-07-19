@@ -1,6 +1,23 @@
-.individual-rating-container{
-    background-color: white;
-    flex-grow: 1;
-    justify-content: center;
-    align-items: flex-start;
+.individual-rating-container {
+  display: grid;
+  background-color: white;
+}
+
+.individual-rating__form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.individual-rating__form-input {
+  padding: 6px;
+  font-size: 100%;
+}
+
+.individual-rating__form-button {
+  padding: 10px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-size: 18px;
 }

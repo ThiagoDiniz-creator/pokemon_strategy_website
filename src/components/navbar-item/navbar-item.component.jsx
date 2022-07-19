@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar-item.styles.css";
 
-import { Typography } from "@mui/material";
 
 const NavbarItem = ({ itemUrl, itemText, handleClick, ...otherProps }) => (
   <Link
@@ -11,7 +10,7 @@ const NavbarItem = ({ itemUrl, itemText, handleClick, ...otherProps }) => (
     to={`${itemUrl}`}
     {...otherProps}
   >
-    <Typography variant="h6">{itemText}</Typography>
+    <h6>{itemText}</h6>
   </Link>
 );
 

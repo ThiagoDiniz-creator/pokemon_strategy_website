@@ -1,47 +1,18 @@
-.main__header {
-  display: flex;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.829);
-  justify-items: center;
-  height: 10vh;
-}
-
+/* NAVBAR */
 .navbar {
-  width: 80%;
-  padding: 0.6vmax;
+  background: #323232;
+  height: 10vh;
+
+  /* Flex */
   display: flex;
-}
-
-.navbar__brand {
-  width: 20%;
-  margin: auto;
-}
-
-.navbar__brand__text {
-  text-decoration: none;
-  font-size: 1.4vmax;
-  font-weight: bolder;
-  display: flex;
-  margin: 0.8vmax 0vh 0vh 1vmax;
-  font-family: "Montserrat", sans-serif;
-  color: rgb(255, 255, 255);
-}
-
-.navbar__brand::first-letter {
-  color: red;
-  font-family: "Pacifico", cursive;
+  flex: 1 0;
+  justify-items: center;
 }
 
 .navbar__items {
   list-style: none;
-  flex-grow: 1;
-  display: flex;
-  justify-content: flex-end;
-}
 
-.generic-container{
-  width: 4vmax;
-  padding: .8vmax;
+  /* Flex */
   display: flex;
-  align-items: center;
+  flex: 1 1;
 }
